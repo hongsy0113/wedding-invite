@@ -2,8 +2,39 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// Minimal type surface for Kakao Maps used in this component (enough to satisfy ESLint/types)
+interface KakaoLatLng {}
+interface KakaoMap {
+  setCenter: (latlng: KakaoLatLng) => void;
+}
+interface KakaoMarker {
+  setMap: (map: KakaoMap | null) => void;
+  setPosition: (latlng: KakaoLatLng) => void;
+}
+interface KakaoGeocoder {
+  addressSearch: (
+    query: string,
+    cb: (result: { x: string; y: string }[], status: string) => void
+  ) => void;
+}
+type Kakao = {
+  maps: {
+    LatLng: new (lat: number, lng: number) => KakaoLatLng;
+    Map: new (
+      container: HTMLElement,
+      opts: { center: KakaoLatLng; level: number }
+    ) => KakaoMap;
+    Marker: new (opts: { position: KakaoLatLng }) => KakaoMarker;
+    services: {
+      Geocoder: new () => KakaoGeocoder;
+      Status: { OK: string };
+    };
+    load: (cb: () => void) => void;
+  };
+};
+
 type KakaoNamespace = typeof window & {
-  kakao?: any;
+  kakao?: Kakao;
 };
 
 export default function KakaoMap({ address, height = 0 }: { address: string; height?: number }) {
@@ -21,22 +52,23 @@ export default function KakaoMap({ address, height = 0 }: { address: string; hei
 
     function init() {
       if (!win.kakao || !win.kakao.maps) return;
-      win.kakao.maps.load(() => {
+      const kakao = win.kakao; // narrow type after guard
+      kakao.maps.load(() => {
         if (!containerRef.current) return;
         // Default center (Gangnam area) before geocoding so a map shows immediately
-        const defaultCenter = new win.kakao.maps.LatLng(37.5049, 127.0506);
-        const map = new win.kakao.maps.Map(containerRef.current, {
+        const defaultCenter = new kakao.maps.LatLng(37.5049, 127.0506);
+        const map = new kakao.maps.Map(containerRef.current, {
           center: defaultCenter,
           level: 3,
         });
-        const marker = new win.kakao.maps.Marker({ position: defaultCenter });
+        const marker = new kakao.maps.Marker({ position: defaultCenter });
         marker.setMap(map);
 
-        const geocoder = new win.kakao.maps.services.Geocoder();
-        geocoder.addressSearch(address, (result: any[], status: string) => {
-          if (status === win.kakao.maps.services.Status.OK && result.length > 0) {
+        const geocoder = new kakao.maps.services.Geocoder();
+        geocoder.addressSearch(address, (result: { x: string; y: string }[], status: string) => {
+          if (status === kakao.maps.services.Status.OK && result.length > 0) {
             const { x, y } = result[0];
-            const center = new win.kakao.maps.LatLng(Number(y), Number(x));
+            const center = new kakao.maps.LatLng(Number(y), Number(x));
             map.setCenter(center);
             marker.setPosition(center);
           } else {
