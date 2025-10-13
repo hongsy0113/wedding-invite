@@ -5,7 +5,10 @@ import { useState } from "react";
 
 export default function GalleryClient({ initialCount }: { initialCount: number }) {
   const [visible, setVisible] = useState(initialCount);
-  const images = Array.from({ length: 12 }).map((_, i) => `/gallery/${i + 1}.jpg`);
+  const images = Array.from({ length: 12 }).map((_, i) => {
+    const idx = String(i + 1).padStart(2, "0");
+    return `/image/detail-image-${idx}.jpg`;
+  });
   const canShowMore = visible < images.length;
 
   return (
