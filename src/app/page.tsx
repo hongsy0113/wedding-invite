@@ -18,9 +18,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-white">
             <p className="text-xs tracking-[0.3em] mb-2 font-light">우리 결혼합니다</p>
-            <h1 className="text-3xl sm:text-4xl font-light mb-2">홍길동 · 김하나</h1>
-            <p className="text-xs sm:text-sm mb-1 font-light">2025년 11월 22일 토요일 오후 1시</p>
-            <p className="text-xs sm:text-sm font-light">서울 ○○웨딩홀 3층 라벤더홀</p>
+            <h1 className="text-3xl sm:text-4xl font-light mb-2">홍성윤 · 김민지</h1>
+            <p className="text-xs sm:text-sm mb-1 font-light">2026년 7월 11일 토요일 오후 5시</p>
+            <p className="text-xs sm:text-sm font-light">르비르모어 선릉</p>
           </div>
         </section>
 
@@ -41,8 +41,8 @@ export default function Home() {
             </div>
             <div className="flex-1">
               <p className="text-xs text-gray-500 flex items-center gap-1"><Users className="h-3 w-3" />신랑</p>
-              <p className="text-lg font-light">홍길동</p>
-              <p className="text-sm text-gray-600 font-light">홍판서 · 마님 의 아들</p>
+              <p className="text-lg font-light">홍성윤</p>
+              <p className="text-sm text-gray-600 font-light">홍근표 · 최문주 의 장남</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -51,8 +51,8 @@ export default function Home() {
             </div>
             <div className="flex-1">
               <p className="text-xs text-gray-500 flex items-center gap-1"><Users className="h-3 w-3" />신부</p>
-              <p className="text-lg font-light">김하나</p>
-              <p className="text-sm text-gray-600 font-light">김○○ · 이○○ 의 딸</p>
+              <p className="text-lg font-light">김민지</p>
+              <p className="text-sm text-gray-600 font-light">김덕규 · 손정희 의 장녀</p>
             </div>
           </div>
         </section>
@@ -60,34 +60,52 @@ export default function Home() {
         {/* Date / Calendar Section */}
         <section className="px-6 py-8">
           <div className="rounded-2xl border border-black/10 overflow-hidden shadow-sm">
-            <div className="px-5 py-3 bg-[#F5EFE6]">
-              <p className="text-sm font-light flex items-center gap-2"><Calendar className="h-4 w-4" />2025년 11월</p>
+            <div className="px-5 py-4 bg-[#F5EFE6] border-b border-black/10">
+              <p className="text-sm font-light flex items-center gap-2 tracking-wide">
+                <Calendar className="h-4 w-4" /> 2026년 7월
+              </p>
             </div>
-            <div className="grid grid-cols-7 gap-0 text-center text-sm">
-              {Array.from({ length: 7 }).map((_, i) => (
-                <div key={`dw-${i}`} className="py-2 text-gray-500">
-                  {["일","월","화","수","목","금","토"][i]}
-                </div>
-              ))}
-              {/* Simple static calendar grid (placeholder) */}
-              {Array.from({ length: 35 }).map((_, i) => {
-                const day = i - 4; // pretend 1st starts on Fri
-                const isValid = day > 0 && day <= 30;
-                const isWedding = day === 22;
-                return (
-                  <div
-                    key={`d-${i}`}
-                    className={`py-3 font-light ${
-                      isValid ? "" : "opacity-30"
-                    } ${isWedding ? "bg-rose-50 text-rose-700" : ""}`}
-                  >
-                    {isValid ? day : ""}
+            <div className="px-2 sm:px-4 py-2">
+              <div className="grid grid-cols-7 gap-y-4 text-center text-sm">
+                {Array.from({ length: 7 }).map((_, i) => (
+                  <div key={`dw-${i}`} className="pt-2 text-gray-500 font-light">
+                    {["일","월","화","수","목","금","토"][i]}
                   </div>
-                );
-              })}
+                ))}
+                {/* July 2026 calendar: starts Wed (index 3), 31 days */}
+                {Array.from({ length: 35 }).map((_, i) => {
+                  const startOffset = 3; // Sun=0, Mon=1, Tue=2, Wed=3
+                  const daysInMonth = 31;
+                  const day = i - startOffset + 1;
+                  const isValid = day >= 1 && day <= daysInMonth;
+                  const isWedding = day === 11;
+                  if (!isValid) {
+                    return (
+                      <div key={`d-${i}`} className="py-3 opacity-30" />
+                    );
+                  }
+                  if (isWedding) {
+                    return (
+                      <div key={`d-${i}`} className="flex flex-col items-center">
+                        <div className="h-10 w-10 rounded-full bg-rose-50 flex items-center justify-center shadow-sm border border-rose-100">
+                          <span className="font-medium text-white bg-rose-400 h-8 w-8 rounded-full flex items-center justify-center">
+                            {day}
+                          </span>
+                        </div>
+                        <span className="mt-1 text-[10px] text-gray-900">오후 5시</span>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={`d-${i}`} className="py-3 font-light">
+                      {day}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          <p className="text-center text-sm text-gray-600 mt-3">예식일: 11월 22일 (토)</p>
+          <p className="text-center text-sm text-gray-600 mt-3">예식일: 7월 11일 (토) 오후 5시</p>
         </section>
 
         {/* Gallery Section */}
@@ -96,7 +114,7 @@ export default function Home() {
         {/* Location Section */}
         <section className="px-6 py-10">
           <h2 className="text-lg font-light mb-3 flex items-center gap-2"><MapPin className="h-5 w-5" />오시는 길</h2>
-          <p className="text-sm text-gray-600 mb-3 font-light">서울 ○○웨딩홀 3층 라벤더홀</p>
+          <p className="text-sm text-gray-600 mb-3 font-light">르비르모어 선릉 · 서울시 강남구 테헤란로 406 A동</p>
           <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
             <iframe
               title="map"
@@ -126,7 +144,7 @@ export default function Home() {
               <p className="font-light mb-1">신부측</p>
               <p className="text-gray-700 font-light">신한 000-000-000000 (김하나)</p>
             </div>
-          </div>
+        </div>
         </section>
 
         <footer className="px-6 py-10 text-center text-xs text-gray-500 font-light">감사합니다.</footer>
