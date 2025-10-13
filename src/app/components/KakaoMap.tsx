@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 // Minimal type surface for Kakao Maps used in this component (enough to satisfy ESLint/types)
-interface KakaoLatLng {}
+type KakaoLatLng = object;
 interface KakaoMap {
   setCenter: (latlng: KakaoLatLng) => void;
 }
