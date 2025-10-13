@@ -9,8 +9,8 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative w-full h-[60vh] sm:h-[70vh] overflow-hidden">
         <Image
-            src="/cover.jpg"
-            alt="신랑 신부 사진"
+            src="/image/main-image.jpg"
+            alt="메인 이미지"
             fill
           priority
             className="object-cover"
