@@ -20,28 +20,27 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
       document.body.style.overflow = "hidden";
       // Prevent pinch/double-tap zoom on iOS within overlay
       const el = overlayRef.current;
-      const prevent = (e: Event) => {
+      const gestureHandler: EventListener = (e: Event) => {
         e.preventDefault();
       };
+      const wheelHandler = (e: WheelEvent) => {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      };
       if (el) {
-        el.addEventListener("gesturestart", prevent as EventListener, { passive: false } as AddEventListenerOptions);
-        el.addEventListener("gesturechange", prevent as EventListener, { passive: false } as AddEventListenerOptions);
-        el.addEventListener("gestureend", prevent as EventListener, { passive: false } as AddEventListenerOptions);
-        el.addEventListener(
-          "wheel",
-          (e: WheelEvent) => {
-            if (e.ctrlKey) prevent(e);
-          },
-          { passive: false }
-        );
+        el.addEventListener("gesturestart", gestureHandler, { passive: false });
+        el.addEventListener("gesturechange", gestureHandler, { passive: false });
+        el.addEventListener("gestureend", gestureHandler, { passive: false });
+        el.addEventListener("wheel", wheelHandler as EventListener, { passive: false });
       }
       return () => {
         document.body.style.overflow = prev;
         if (el) {
-          el.removeEventListener("gesturestart", prevent as EventListener as any);
-          el.removeEventListener("gesturechange", prevent as EventListener as any);
-          el.removeEventListener("gestureend", prevent as EventListener as any);
-          el.removeEventListener("wheel", prevent as EventListener as any);
+          el.removeEventListener("gesturestart", gestureHandler);
+          el.removeEventListener("gesturechange", gestureHandler);
+          el.removeEventListener("gestureend", gestureHandler);
+          el.removeEventListener("wheel", wheelHandler as EventListener);
         }
       };
     }
