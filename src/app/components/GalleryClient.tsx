@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export default function GalleryClient({ initialCount }: { initialCount: number }) {
@@ -12,13 +12,37 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
   });
   const canShowMore = visible < images.length;
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (lightboxIdx !== null) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
+      // Prevent pinch/double-tap zoom on iOS within overlay
+      const el = overlayRef.current;
+      const prevent = (e: Event) => {
+        e.preventDefault();
+      };
+      if (el) {
+        el.addEventListener("gesturestart", prevent as EventListener, { passive: false } as AddEventListenerOptions);
+        el.addEventListener("gesturechange", prevent as EventListener, { passive: false } as AddEventListenerOptions);
+        el.addEventListener("gestureend", prevent as EventListener, { passive: false } as AddEventListenerOptions);
+        el.addEventListener(
+          "wheel",
+          (e: WheelEvent) => {
+            if (e.ctrlKey) prevent(e);
+          },
+          { passive: false }
+        );
+      }
       return () => {
         document.body.style.overflow = prev;
+        if (el) {
+          el.removeEventListener("gesturestart", prevent as EventListener as any);
+          el.removeEventListener("gesturechange", prevent as EventListener as any);
+          el.removeEventListener("gestureend", prevent as EventListener as any);
+          el.removeEventListener("wheel", prevent as EventListener as any);
+        }
       };
     }
     return undefined;
@@ -59,7 +83,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
         </div>
       )}
       {lightboxIdx !== null && (
-        <div className="fixed inset-0 z-50 bg-black/90 text-white flex items-center justify-center">
+        <div ref={overlayRef} className="fixed inset-0 z-50 bg-black/90 text-white flex items-center justify-center touch-none select-none">
           <button
             type="button"
             aria-label="닫기"
@@ -83,6 +107,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
               fill
               className="object-contain"
               sizes="90vw"
+              draggable={false}
             />
           </div>
           <button
