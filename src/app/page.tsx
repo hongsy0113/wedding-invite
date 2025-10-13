@@ -1,6 +1,6 @@
 import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
-import { MapPin, Calendar, Gift, Users } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 import KakaoMap from "@/app/components/KakaoMap";
 import { Great_Vibes } from "next/font/google";
 
@@ -40,6 +40,7 @@ export default function Home() {
 
         {/* Invitation Message */}
         <section className="px-6 py-10">
+          <h2 className="text-center text-lg font-light text-gray-800 mb-4" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>소중한 분들을 초대합니다.</h2>
           <p className="whitespace-pre-line text-center leading-7 text-sm sm:text-base font-light text-gray-700">
             서로가 마주 보며 다져온 사랑을 이제 함께 한 곳을 바라보며
             걸어가고자 합니다. 귀한 걸음 하시어 축복해 주시면
@@ -127,7 +128,7 @@ export default function Home() {
 
         {/* Location Section */}
         <section className="px-6 py-10">
-          <h2 className="text-lg font-light mb-3 flex items-center gap-2"><MapPin className="h-5 w-5" />오시는 길</h2>
+          <h2 className="text-lg font-light mb-3 text-center text-gray-800" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>오시는 길</h2>
           <p className="text-sm text-gray-600 mb-3 font-light">르비르모어 선릉 · 서울시 강남구 테헤란로 406 A동</p>
           <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
             <KakaoMap address="서울 강남구 테헤란로 406" />
@@ -139,7 +140,7 @@ export default function Home() {
 
         {/* Gift Section */}
         <section className="px-6 py-10">
-          <h2 className="text-lg font-light mb-3 flex items-center gap-2"><Gift className="h-5 w-5" />마음 전하실 곳</h2>
+          <h2 className="text-lg font-light mb-3 text-center text-gray-800" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>마음 전하실 곳</h2>
           <p className="text-sm text-gray-600 mb-4 font-light">
             축하의 마음을 전해주시는 분들을 위해 계좌번호를 안내드립니다.
           </p>
@@ -165,7 +166,7 @@ function Gallery() {
   const initialCount = 6;
   return (
     <section className="px-6 py-10">
-      <h2 className="text-lg font-medium mb-3">갤러리</h2>
+      <h2 className="text-lg font-light mb-3 text-center text-gray-800" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>갤러리</h2>
       <GalleryClient initialCount={initialCount} />
     </section>
   );
