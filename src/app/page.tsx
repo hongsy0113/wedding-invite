@@ -1,13 +1,16 @@
 import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
 import { MapPin, Calendar, Gift, Users } from "lucide-react";
+import { Great_Vibes } from "next/font/google";
+
+const greatVibes = Great_Vibes({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   return (
     <div className="font-sans bg-background text-foreground">
       <main className="mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         {/* Hero Section */}
-        <section className="relative w-full h-[60vh] sm:h-[70vh] overflow-hidden">
+        <section className="relative w-full h-[65vh] sm:h-[72vh] overflow-hidden">
         <Image
             src="/image/main-image.jpg"
             alt="메인 이미지"
@@ -15,12 +18,22 @@ export default function Home() {
           priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-white">
-            <p className="text-xs tracking-[0.3em] mb-2 font-light">우리 결혼합니다</p>
-            <h1 className="text-3xl sm:text-4xl font-light mb-2">홍성윤 · 김민지</h1>
-            <p className="text-xs sm:text-sm mb-1 font-light">2026년 7월 11일 토요일 오후 5시</p>
-            <p className="text-xs sm:text-sm font-light">르비르모어 선릉</p>
+          <div className="absolute inset-0">
+            {/* Top soft white gradient for readability */}
+            <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-white/95 to-transparent" />
+            {/* Top labels */}
+            <div className="absolute top-6 left-0 right-0 text-center px-6 text-gray-900">
+              <p className="text-[10px] tracking-[0.35em] mb-2 font-light uppercase">WEDDING INVITATION</p>
+              <p className="text-sm sm:text-base font-light">홍성윤 <span className="mx-1">|</span> 김민지</p>
+            </div>
+            {/* Bottom gradient for legibility */}
+            <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-white/95" />
+            {/* Bottom names + details */}
+            <div className="absolute bottom-8 left-0 right-0 text-center px-6">
+              <p className={`${greatVibes.className} text-2xl sm:text-3xl text-gray-800 mb-3`}>Sungyoon and Minji</p>
+              <p className="text-xs sm:text-sm font-light text-gray-700 mb-1">2026년 7월 11일 토요일 오후 5시</p>
+              <p className="text-xs sm:text-sm font-light text-gray-700">르비르모어 선릉</p>
+            </div>
           </div>
         </section>
 
