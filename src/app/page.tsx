@@ -102,8 +102,8 @@ export default function Home() {
                   if (isWedding) {
                     return (
                       <div key={`d-${i}`} className="flex flex-col items-center">
-                        <div className="h-10 w-10 rounded-full bg-rose-50 flex items-center justify-center shadow-sm border border-rose-100">
-                          <span className="font-medium text-white bg-rose-400 h-8 w-8 rounded-full flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-full bg-rose-100/40 flex items-center justify-center">
+                          <span className="font-medium text-gray-800">
                             {day}
                           </span>
                         </div>
