@@ -1,6 +1,7 @@
 import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
 import { MapPin, Calendar, Gift, Users } from "lucide-react";
+import KakaoMap from "@/app/components/KakaoMap";
 import { Great_Vibes } from "next/font/google";
 
 const greatVibes = Great_Vibes({ subsets: ["latin"], weight: "400" });
@@ -129,13 +130,7 @@ export default function Home() {
           <h2 className="text-lg font-light mb-3 flex items-center gap-2"><MapPin className="h-5 w-5" />오시는 길</h2>
           <p className="text-sm text-gray-600 mb-3 font-light">르비르모어 선릉 · 서울시 강남구 테헤란로 406 A동</p>
           <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
-            <iframe
-              title="map"
-              className="w-full h-full"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.590702994937!2d127.027583!3d37.496988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca1589d9d9d9d%3A0x0000000000000000!2z7ISc7Jq47Yq567OE7Iuc7Yuw!5e0!3m2!1sko!2skr!4v1700000000000"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            <KakaoMap address="서울 강남구 테헤란로 406" />
           </div>
           <p className="text-sm text-gray-600 mt-3 font-light">
             2호선 ○○역 3번 출구에서 도보 5분, 주차 2시간 무료 제공
