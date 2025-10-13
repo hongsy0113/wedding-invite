@@ -1,5 +1,6 @@
 import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
+import { MapPin, Calendar, Gift, Users } from "lucide-react";
 
 export default function Home() {
   return (
@@ -14,18 +15,18 @@ export default function Home() {
           priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-white">
-            <p className="text-sm tracking-widest mb-2">우리 결혼합니다</p>
-            <h1 className="text-3xl sm:text-4xl font-semibold mb-2">홍길동 · 김하나</h1>
-            <p className="text-sm sm:text-base mb-1">2025년 11월 22일 토요일 오후 1시</p>
-            <p className="text-sm sm:text-base">서울 ○○웨딩홀 3층 라벤더홀</p>
+            <p className="text-xs tracking-[0.3em] mb-2 font-light">우리 결혼합니다</p>
+            <h1 className="text-3xl sm:text-4xl font-light mb-2">홍길동 · 김하나</h1>
+            <p className="text-xs sm:text-sm mb-1 font-light">2025년 11월 22일 토요일 오후 1시</p>
+            <p className="text-xs sm:text-sm font-light">서울 ○○웨딩홀 3층 라벤더홀</p>
           </div>
         </section>
 
         {/* Invitation Message */}
         <section className="px-6 py-10">
-          <p className="whitespace-pre-line text-center leading-7 text-sm sm:text-base">
+          <p className="whitespace-pre-line text-center leading-7 text-sm sm:text-base font-light text-gray-700">
             서로가 마주 보며 다져온 사랑을 이제 함께 한 곳을 바라보며
             걸어가고자 합니다. 귀한 걸음 하시어 축복해 주시면
             감사하겠습니다.
@@ -39,9 +40,9 @@ export default function Home() {
               <Image src="/groom.jpg" alt="신랑 사진" fill className="object-cover" />
             </div>
             <div className="flex-1">
-              <p className="text-xs text-gray-500">신랑</p>
-              <p className="text-lg font-medium">홍길동</p>
-              <p className="text-sm text-gray-600">홍판서 · 마님 의 아들</p>
+              <p className="text-xs text-gray-500 flex items-center gap-1"><Users className="h-3 w-3" />신랑</p>
+              <p className="text-lg font-light">홍길동</p>
+              <p className="text-sm text-gray-600 font-light">홍판서 · 마님 의 아들</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -49,18 +50,18 @@ export default function Home() {
               <Image src="/bride.jpg" alt="신부 사진" fill className="object-cover" />
             </div>
             <div className="flex-1">
-              <p className="text-xs text-gray-500">신부</p>
-              <p className="text-lg font-medium">김하나</p>
-              <p className="text-sm text-gray-600">김○○ · 이○○ 의 딸</p>
+              <p className="text-xs text-gray-500 flex items-center gap-1"><Users className="h-3 w-3" />신부</p>
+              <p className="text-lg font-light">김하나</p>
+              <p className="text-sm text-gray-600 font-light">김○○ · 이○○ 의 딸</p>
             </div>
           </div>
         </section>
 
         {/* Date / Calendar Section */}
         <section className="px-6 py-8">
-          <div className="rounded-2xl border border-black/10 overflow-hidden">
-            <div className="px-5 py-3 bg-gray-50">
-              <p className="text-sm font-medium">2025년 11월</p>
+          <div className="rounded-2xl border border-black/10 overflow-hidden shadow-sm">
+            <div className="px-5 py-3 bg-[#F5EFE6]">
+              <p className="text-sm font-light flex items-center gap-2"><Calendar className="h-4 w-4" />2025년 11월</p>
             </div>
             <div className="grid grid-cols-7 gap-0 text-center text-sm">
               {Array.from({ length: 7 }).map((_, i) => (
@@ -76,9 +77,9 @@ export default function Home() {
                 return (
                   <div
                     key={`d-${i}`}
-                    className={`py-3 ${
+                    className={`py-3 font-light ${
                       isValid ? "" : "opacity-30"
-                    } ${isWedding ? "bg-pink-50 text-pink-700 font-medium" : ""}`}
+                    } ${isWedding ? "bg-rose-50 text-rose-700" : ""}`}
                   >
                     {isValid ? day : ""}
                   </div>
@@ -94,9 +95,9 @@ export default function Home() {
 
         {/* Location Section */}
         <section className="px-6 py-10">
-          <h2 className="text-lg font-medium mb-3">오시는 길</h2>
-          <p className="text-sm text-gray-600 mb-3">서울 ○○웨딩홀 3층 라벤더홀</p>
-          <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-black/10">
+          <h2 className="text-lg font-light mb-3 flex items-center gap-2"><MapPin className="h-5 w-5" />오시는 길</h2>
+          <p className="text-sm text-gray-600 mb-3 font-light">서울 ○○웨딩홀 3층 라벤더홀</p>
+          <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
             <iframe
               title="map"
               className="w-full h-full"
@@ -105,30 +106,30 @@ export default function Home() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <p className="text-sm text-gray-600 mt-3">
+          <p className="text-sm text-gray-600 mt-3 font-light">
             2호선 ○○역 3번 출구에서 도보 5분, 주차 2시간 무료 제공
           </p>
         </section>
 
         {/* Gift Section */}
         <section className="px-6 py-10">
-          <h2 className="text-lg font-medium mb-3">마음 전하실 곳</h2>
-          <p className="text-sm text-gray-600 mb-4">
+          <h2 className="text-lg font-light mb-3 flex items-center gap-2"><Gift className="h-5 w-5" />마음 전하실 곳</h2>
+          <p className="text-sm text-gray-600 mb-4 font-light">
             축하의 마음을 전해주시는 분들을 위해 계좌번호를 안내드립니다.
           </p>
           <div className="grid grid-cols-1 gap-3 text-sm">
-            <div className="rounded-xl border border-black/10 p-4">
-              <p className="font-medium mb-1">신랑측</p>
-              <p className="text-gray-700">국민 000000-00-000000 (홍길동)</p>
+            <div className="rounded-2xl border border-black/10 p-4 shadow-sm">
+              <p className="font-light mb-1">신랑측</p>
+              <p className="text-gray-700 font-light">국민 000000-00-000000 (홍길동)</p>
             </div>
-            <div className="rounded-xl border border-black/10 p-4">
-              <p className="font-medium mb-1">신부측</p>
-              <p className="text-gray-700">신한 000-000-000000 (김하나)</p>
+            <div className="rounded-2xl border border-black/10 p-4 shadow-sm">
+              <p className="font-light mb-1">신부측</p>
+              <p className="text-gray-700 font-light">신한 000-000-000000 (김하나)</p>
             </div>
           </div>
         </section>
 
-        <footer className="px-6 py-10 text-center text-xs text-gray-500">감사합니다.</footer>
+        <footer className="px-6 py-10 text-center text-xs text-gray-500 font-light">감사합니다.</footer>
       </main>
     </div>
   );

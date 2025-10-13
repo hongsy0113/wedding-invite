@@ -20,7 +20,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
       {canShowMore && (
         <div className="mt-4 flex justify-center">
           <button
-            className="px-4 py-2 text-sm rounded-full border border-black/10 hover:bg-gray-50"
+            className="px-4 py-2 text-sm rounded-2xl border border-black/10 hover:bg-[#F5EFE6] shadow-sm font-light"
             onClick={() => setVisible((v) => v + 6)}
           >
             더보기
