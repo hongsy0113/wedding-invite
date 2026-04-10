@@ -84,54 +84,59 @@ export default function Home() {
         </section>
 
         {/* Date / Calendar Section */}
-        <section className="px-6 py-8">
-          <div className="rounded-2xl border border-black/10 overflow-hidden shadow-sm">
-            <div className="px-5 py-4 bg-[#F5EFE6] border-b border-black/10">
-              <p className="text-sm font-light tracking-wide">
-                2026년 7월
-              </p>
-            </div>
-            <div className="px-2 sm:px-4 py-2">
-              <div className="grid grid-cols-7 gap-y-4 text-center text-sm">
-                {Array.from({ length: 7 }).map((_, i) => (
-                  <div key={`dw-${i}`} className="pt-2 text-gray-500 font-light">
-                    {["일","월","화","수","목","금","토"][i]}
-                  </div>
-                ))}
-                {/* July 2026 calendar: starts Wed (index 3), 31 days */}
-                {Array.from({ length: 35 }).map((_, i) => {
-                  const startOffset = 3; // Sun=0, Mon=1, Tue=2, Wed=3
-                  const daysInMonth = 31;
-                  const day = i - startOffset + 1;
-                  const isValid = day >= 1 && day <= daysInMonth;
-                  const isWedding = day === 11;
-                  if (!isValid) {
-                    return (
-                      <div key={`d-${i}`} className="py-3 opacity-30" />
-                    );
-                  }
-                  if (isWedding) {
-                    return (
-                      <div key={`d-${i}`} className="flex flex-col items-center">
-                        <div className="h-10 w-10 rounded-full bg-rose-100/40 flex items-center justify-center">
-                          <span className="font-medium text-gray-800">
-                            {day}
-                          </span>
-                        </div>
-                        <span className="mt-1 text-[10px] text-gray-900">오후 5시</span>
-                      </div>
-                    );
-                  }
+        <section className="px-8 sm:px-10 py-12">
+          <div className="mx-auto max-w-[27rem] text-center">
+            <h2 className="text-[1.35rem] sm:text-[1.5rem] font-normal text-[#C9979C] tracking-[-0.01em]">
+              예식 안내
+            </h2>
+            <p className="mt-8 whitespace-nowrap text-[1.05rem] sm:text-[1.2rem] leading-snug font-normal text-[#333333] tracking-[-0.01em]">
+              2026년 7월 11일 토요일 오후 5시
+            </p>
+            <p className="mt-4 whitespace-nowrap text-[1.05rem] sm:text-[1.2rem] leading-snug font-normal text-[#333333] tracking-[-0.01em]">
+              르비르모어 선릉
+            </p>
+
+            <p className="mt-14 text-[1.5rem] sm:text-[1.7rem] font-normal text-[#C9979C] tracking-[-0.01em]">7월</p>
+
+            <div className="mt-10 grid grid-cols-7 gap-y-4 sm:gap-y-6 text-center text-[1.05rem] sm:text-[1.9rem] leading-none">
+              {Array.from({ length: 7 }).map((_, i) => (
+                <div
+                  key={`dw-${i}`}
+                  className={`font-normal ${i === 0 ? "text-[#C9979C]" : "text-[#444444]"}`}
+                >
+                  {["일", "월", "화", "수", "목", "금", "토"][i]}
+                </div>
+              ))}
+              {/* July 2026 calendar: starts Wed (index 3), 31 days */}
+              {Array.from({ length: 35 }).map((_, i) => {
+                const startOffset = 3; // Sun=0, Mon=1, Tue=2, Wed=3
+                const daysInMonth = 31;
+                const day = i - startOffset + 1;
+                const isValid = day >= 1 && day <= daysInMonth;
+                const isWedding = day === 11;
+
+                if (!isValid) {
+                  return <div key={`d-${i}`} className="h-10 sm:h-14" />;
+                }
+
+                if (isWedding) {
                   return (
-                    <div key={`d-${i}`} className="py-3 font-light">
-                      {day}
+                    <div key={`d-${i}`} className="flex items-center justify-center h-10 sm:h-14">
+                      <div className="h-9 w-9 sm:h-12 sm:w-12 rounded-full bg-[#EAC5CC] flex items-center justify-center text-white font-normal shadow-[0_4px_10px_rgba(0,0,0,0.08)]">
+                        {day}
+                      </div>
                     </div>
                   );
-                })}
-              </div>
+                }
+
+                return (
+                  <div key={`d-${i}`} className="h-10 sm:h-14 flex items-center justify-center font-normal text-[#505050]">
+                    {day}
+                  </div>
+                );
+              })}
             </div>
           </div>
-          <p className="text-center text-sm text-gray-600 mt-3">예식일: 7월 11일 (토) 오후 5시</p>
         </section>
 
         {/* Gallery Section */}
