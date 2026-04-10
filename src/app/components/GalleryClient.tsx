@@ -2,15 +2,14 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export default function GalleryClient({ initialCount }: { initialCount: number }) {
   const [visible, setVisible] = useState(initialCount);
-  const images = Array.from({ length: 12 }).map((_, i) => {
+  const imageIds = Array.from({ length: 12 }).map((_, i) => {
     const idx = String(i + 1).padStart(2, "0");
-    return `/image/detail-image-${idx}.jpg`;
+    return idx;
   });
-  const canShowMore = visible < images.length;
+  const canShowMore = visible < imageIds.length;
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,25 +48,31 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
 
   const showPrev = () => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + images.length - 1) % images.length);
+    setLightboxIdx((lightboxIdx + imageIds.length - 1) % imageIds.length);
   };
   const showNext = () => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + 1) % images.length);
+    setLightboxIdx((lightboxIdx + 1) % imageIds.length);
   };
 
   return (
     <div>
       <div className="grid grid-cols-3 gap-2">
-        {images.slice(0, visible).map((src, idx) => (
+        {imageIds.slice(0, visible).map((id, idx) => (
           <button
-            key={src}
+            key={id}
             type="button"
             aria-label="이미지 확대 보기"
             className="relative aspect-square overflow-hidden rounded-md"
             onClick={() => setLightboxIdx(idx)}
           >
-            <Image src={src} alt="갤러리 이미지" fill className="object-cover" />
+            <Image
+              src={`/image/optimized/thumb/detail-image-${id}.jpg`}
+              alt="갤러리 이미지"
+              fill
+              sizes="(max-width: 640px) 33vw, 220px"
+              className="object-cover"
+            />
           </button>
         ))}
       </div>
@@ -89,7 +94,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
             className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20"
             onClick={() => setLightboxIdx(null)}
           >
-            <X className="h-6 w-6" />
+            <span className="block h-6 w-6 text-xl leading-6">×</span>
           </button>
           <button
             type="button"
@@ -97,11 +102,11 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
             className="absolute left-2 sm:left-4 p-3 rounded-full bg-white/10 hover:bg-white/20"
             onClick={showPrev}
           >
-            <ChevronLeft className="h-6 w-6" />
+            <span className="block h-6 w-6 text-2xl leading-6">‹</span>
           </button>
           <div className="relative w-[90vw] h-[80vh]">
             <Image
-              src={images[lightboxIdx]}
+              src={`/image/optimized/large/detail-image-${imageIds[lightboxIdx]}.jpg`}
               alt="확대 이미지"
               fill
               className="object-contain"
@@ -115,12 +120,10 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
             className="absolute right-2 sm:right-4 p-3 rounded-full bg-white/10 hover:bg-white/20"
             onClick={showNext}
           >
-            <ChevronRight className="h-6 w-6" />
+            <span className="block h-6 w-6 text-2xl leading-6">›</span>
           </button>
         </div>
       )}
     </div>
   );
 }
-
-

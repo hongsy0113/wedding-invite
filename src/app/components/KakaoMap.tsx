@@ -38,11 +38,36 @@ type KakaoNamespace = typeof window & {
 };
 
 export default function KakaoMap({ address, height = 0 }: { address: string; height?: number }) {
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const target = rootRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "250px 0px" }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+
     const win = window as KakaoNamespace;
     const appKey = process.env.NEXT_PUBLIC_KAKAO_APP_KEY;
     if (!appKey) {
@@ -93,18 +118,17 @@ export default function KakaoMap({ address, height = 0 }: { address: string; hei
       // best-effort cleanup
       script.onload = null;
     };
-  }, [address]);
+  }, [address, shouldLoad]);
 
   return (
-    <div className="relative w-full h-full" style={{ height: height || undefined }}>
+    <div ref={rootRef} className="relative w-full h-full" style={{ height: height || undefined }}>
       <div ref={containerRef} className="w-full h-full" />
       {!ready && (
         <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-500">
-          {error || "지도를 불러오는 중..."}
+          {error || (shouldLoad ? "지도를 불러오는 중..." : "지도를 준비 중...")}
         </div>
       )}
     </div>
   );
 }
-
 

@@ -1,40 +1,37 @@
 import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
-import { Calendar, Users } from "lucide-react";
 import KakaoMap from "@/app/components/KakaoMap";
-import { Great_Vibes } from "next/font/google";
-
-const greatVibes = Great_Vibes({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   return (
     <div className="font-sans bg-background text-foreground">
       <main className="mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         {/* Hero Section */}
-        <section className="relative w-full h-[65vh] sm:h-[72vh] overflow-hidden">
-        <Image
-            src="/image/main-image.jpg"
-            alt="메인 이미지"
-            fill
-          priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0">
-            {/* Top soft white gradient for readability */}
-            <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-white/95 to-transparent" />
-            {/* Top labels */}
-            <div className="absolute top-6 left-0 right-0 text-center px-6 text-gray-900">
-              <p className="text-[10px] tracking-[0.35em] mb-2 font-light uppercase">WEDDING INVITATION</p>
-              <p className="text-sm sm:text-base font-light">홍성윤 <span className="mx-1">|</span> 김민지</p>
+        <section>
+          <div className="relative w-full h-[65vh] sm:h-[72vh] overflow-hidden">
+            <Image
+              src="/image/optimized/main-image.jpg"
+              alt="메인 이미지"
+              fill
+              priority
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 768px, 1024px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0">
+              <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-white/95 to-transparent" />
+              <div className="absolute top-6 left-0 right-0 text-center px-6 text-gray-900">
+                <p className="text-[10px] tracking-[0.35em] mb-2 font-light uppercase">WEDDING INVITATION</p>
+                <p className="text-sm sm:text-base font-light">홍성윤 <span className="mx-1">|</span> 김민지</p>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white/70" />
+              <div className="absolute bottom-8 left-0 right-0 text-center px-6">
+                <p className="text-2xl sm:text-3xl text-gray-800 italic font-serif">Sungyoon and Minji</p>
+              </div>
             </div>
-            {/* Bottom gradient for legibility */}
-            <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-white/95" />
-            {/* Bottom names + details */}
-            <div className="absolute bottom-8 left-0 right-0 text-center px-6">
-              <p className={`${greatVibes.className} text-2xl sm:text-3xl text-gray-800 mb-3`}>Sungyoon and Minji</p>
-              <p className="text-xs sm:text-sm font-light text-gray-700 mb-1">2026년 7월 11일 토요일 오후 5시</p>
-              <p className="text-xs sm:text-sm font-light text-gray-700">르비르모어 선릉</p>
-            </div>
+          </div>
+          <div className="border-b border-black/10 bg-white px-6 py-5 text-center shadow-sm">
+            <p className="text-sm sm:text-base text-gray-800 font-light">2026년 7월 11일 토요일 오후 5시</p>
+            <p className="mt-1 text-sm sm:text-base text-gray-600 font-light">르비르모어 선릉</p>
           </div>
         </section>
 
@@ -52,20 +49,20 @@ export default function Home() {
         <section className="px-6 py-8 grid grid-cols-1 gap-6">
           <div className="flex items-center gap-4">
             <div className="relative w-24 h-24 rounded-full overflow-hidden shrink-0">
-              <Image src="/groom.jpg" alt="신랑 사진" fill className="object-cover" />
+              <Image src="/image/optimized/thumb/detail-image-01.jpg" alt="신랑 사진" fill className="object-cover" />
             </div>
             <div className="flex-1">
-              <p className="text-xs text-gray-500 flex items-center gap-1"><Users className="h-3 w-3" />신랑</p>
+              <p className="text-xs text-gray-500">신랑</p>
               <p className="text-lg font-light">홍성윤</p>
               <p className="text-sm text-gray-600 font-light">홍근표 · 최문주 의 장남</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="relative w-24 h-24 rounded-full overflow-hidden shrink-0">
-              <Image src="/bride.jpg" alt="신부 사진" fill className="object-cover" />
+              <Image src="/image/optimized/thumb/detail-image-02.jpg" alt="신부 사진" fill className="object-cover" />
             </div>
             <div className="flex-1">
-              <p className="text-xs text-gray-500 flex items-center gap-1"><Users className="h-3 w-3" />신부</p>
+              <p className="text-xs text-gray-500">신부</p>
               <p className="text-lg font-light">김민지</p>
               <p className="text-sm text-gray-600 font-light">김덕규 · 손정희 의 장녀</p>
             </div>
@@ -76,8 +73,8 @@ export default function Home() {
         <section className="px-6 py-8">
           <div className="rounded-2xl border border-black/10 overflow-hidden shadow-sm">
             <div className="px-5 py-4 bg-[#F5EFE6] border-b border-black/10">
-              <p className="text-sm font-light flex items-center gap-2 tracking-wide">
-                <Calendar className="h-4 w-4" /> 2026년 7월
+              <p className="text-sm font-light tracking-wide">
+                2026년 7월
               </p>
             </div>
             <div className="px-2 sm:px-4 py-2">
