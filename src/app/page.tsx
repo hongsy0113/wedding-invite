@@ -69,8 +69,8 @@ export default function Home() {
 
         {/* Couple Section */}
         <section className="px-6 py-10">
-          <div className="mx-auto w-1/2 whitespace-nowrap text-[clamp(0.8rem,2.45vw,1.08rem)] sm:text-[1.1rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-light">
-            <div className="grid grid-cols-[1fr_1.2em_2.4em_auto] items-baseline gap-y-5">
+          <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.8rem,2.45vw,1.08rem)] sm:text-[1.1rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-light">
+            <div className="mx-auto grid w-fit grid-cols-[auto_1.2em_2.4em_auto] items-baseline gap-y-5">
               <span className="justify-self-end">홍근표 · 최문주</span>
               <span className="w-full text-center text-[0.88em]">의</span>
               <span className="w-full text-center text-[0.88em]">아들</span>
