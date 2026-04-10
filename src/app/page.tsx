@@ -42,13 +42,29 @@ export default function Home() {
         </section>
 
         {/* Invitation Message */}
-        <section className="px-6 py-10">
-          <h2 className="text-center text-lg font-light text-gray-800 mb-4" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>소중한 분들을 초대합니다.</h2>
-          <p className="whitespace-pre-line text-center leading-7 text-sm sm:text-base font-light text-gray-700">
-            서로가 마주 보며 다져온 사랑을 이제 함께 한 곳을 바라보며
-            걸어가고자 합니다. 귀한 걸음 하시어 축복해 주시면
-            감사하겠습니다.
-          </p>
+        <section className="px-6 py-14 sm:py-16">
+          <h2
+            className="mx-auto mb-10 w-fit text-center text-[1.4rem] sm:text-[1.55rem] font-normal tracking-[-0.01em] text-emerald-700"
+            style={{ fontFamily: "var(--font-gungsuh)" }}
+          >
+            소중한 분들을 초대합니다.
+          </h2>
+          <div
+            className="mx-auto max-w-[31rem] text-center text-[0.98rem] sm:text-[1.08rem] leading-[2rem] sm:leading-[2.2rem] font-light tracking-[-0.01em] text-gray-700"
+            style={{ fontFamily: "var(--font-gungsuh)" }}
+          >
+            <p>
+              7번째 여름을 함께 맞이하며,<br />
+              7월의 햇살 아래에서<br />
+              저희 두 사람이 사랑의 결실을 맺고자 합니다.
+            </p>
+            <p className="mt-8">
+              익숙함에 기대어 서로를 당연하게 여기기보다,<br />
+              매 순간 서로의 소중함을 잊지 않고 살아가겠습니다.<br />
+              저희 두 사람이 함께하는 새로운 시작에<br />
+              귀한 발걸음으로 축복해 주시면 감사하겠습니다.
+            </p>
+          </div>
         </section>
 
         {/* Couple Section */}
