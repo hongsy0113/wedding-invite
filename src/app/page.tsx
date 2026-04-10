@@ -87,7 +87,7 @@ export default function Home() {
         {/* Date / Calendar Section */}
         <section className="px-8 sm:px-10 py-12">
           <div className="mx-auto max-w-[27rem] text-center">
-            <h2 className="text-[1.35rem] sm:text-[1.5rem] font-normal text-[#C9979C] tracking-[-0.01em]">
+            <h2 className="text-[1.35rem] sm:text-[1.5rem] font-semibold text-[#C9979C] tracking-[-0.01em]">
               예식 안내
             </h2>
             <p className="mt-8 whitespace-nowrap text-[1.05rem] sm:text-[1.2rem] leading-snug font-normal text-[#333333] tracking-[-0.01em]">
@@ -97,7 +97,7 @@ export default function Home() {
               르비르모어 선릉
             </p>
 
-            <p className="mt-14 text-[1.5rem] sm:text-[1.7rem] font-normal text-[#C9979C] tracking-[-0.01em]">7월</p>
+            <p className="mt-14 text-[1.5rem] sm:text-[1.7rem] font-semibold text-[#C9979C] tracking-[-0.01em]">7월</p>
 
             <div className="mt-10 grid grid-cols-7 gap-y-4 sm:gap-y-6 text-center text-[1.05rem] sm:text-[1.9rem] leading-none">
               {Array.from({ length: 7 }).map((_, i) => (
@@ -146,15 +146,44 @@ export default function Home() {
         <Gallery />
 
         {/* Location Section */}
-        <section className="px-6 py-10">
-          <h2 className="text-lg font-light mb-3 text-center text-gray-800" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>오시는 길</h2>
-          <p className="text-sm text-gray-600 mb-3 font-light">르비르모어 선릉 · 서울시 강남구 테헤란로 406 A동</p>
+        <section className="px-8 py-10">
+          <h2 className="text-lg font-semibold mb-12 text-center text-[#C9979C]" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>오시는 길</h2>
+          <div className="mb-7 text-center space-y-4 max-w-[320px] mx-auto">
+            <p className="text-[16px] sm:text-[20px] leading-relaxed text-[#2D2D2D] font-light tracking-[-0.01em]">
+              르비르모어 선릉
+            </p>
+            <p className="text-[14px] sm:text-[17px] leading-relaxed text-[#444444] font-light">
+              서울시 강남구 테헤란로 406 A동
+            </p>
+          </div>
           <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
             <KakaoMap address="서울 강남구 테헤란로 406" />
           </div>
-          <p className="text-sm text-gray-600 mt-3 font-light">
-            2호선 ○○역 3번 출구에서 도보 5분, 주차 2시간 무료 제공
-          </p>
+          <div className="mt-8 space-y-9 text-center">
+            <div className="space-y-3">
+              <h3 className="text-[15px] text-[#C9979C] font-semibold">주소</h3>
+              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+                서울특별시 강남구 테헤란로 406 (대치동 889-5)
+              </p>
+              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+                샹제리제센터 A동 2층 단독홀
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-[15px] text-[#C9979C] font-semibold">대중교통</h3>
+              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+                2호선, 수인분당선 선릉역 1번 출구 앞 (지하 상가 연결)
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-[15px] text-[#C9979C] font-semibold">자차</h3>
+              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+                네비게이션에 &apos;르비르모어&apos; 검색 (주차 2시간 무료)
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Gift Section */}
