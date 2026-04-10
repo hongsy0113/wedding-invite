@@ -68,25 +68,17 @@ export default function Home() {
         </section>
 
         {/* Couple Section */}
-        <section className="px-6 py-8 grid grid-cols-1 gap-6">
-          <div className="flex items-center gap-4">
-            <div className="relative w-24 h-24 rounded-full overflow-hidden shrink-0">
-              <Image src="/image/optimized/thumb/detail-image-01.jpg" alt="신랑 사진" fill className="object-cover" />
-            </div>
-            <div className="flex-1">
-              <p className="text-xs text-gray-500">신랑</p>
-              <p className="text-lg font-light">홍성윤</p>
-              <p className="text-sm text-gray-600 font-light">홍근표 · 최문주 의 장남</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="relative w-24 h-24 rounded-full overflow-hidden shrink-0">
-              <Image src="/image/optimized/thumb/detail-image-02.jpg" alt="신부 사진" fill className="object-cover" />
-            </div>
-            <div className="flex-1">
-              <p className="text-xs text-gray-500">신부</p>
-              <p className="text-lg font-light">김민지</p>
-              <p className="text-sm text-gray-600 font-light">김덕규 · 손정희 의 장녀</p>
+        <section className="px-6 py-10">
+          <div className="mx-auto w-1/2 whitespace-nowrap text-[clamp(0.8rem,2.45vw,1.08rem)] sm:text-[1.1rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-light">
+            <div className="grid grid-cols-[1fr_1.2em_2.4em_auto] items-baseline gap-y-5">
+              <span className="justify-self-end">홍근표 · 최문주</span>
+              <span className="w-full text-center text-[0.88em]">의</span>
+              <span className="w-full text-center text-[0.88em]">아들</span>
+              <span className="justify-self-start">성윤</span>
+              <span className="justify-self-end">김덕규 · 손정희</span>
+              <span className="w-full text-center text-[0.88em]">의</span>
+              <span className="w-full text-center text-[0.88em]">딸</span>
+              <span className="justify-self-start">민지</span>
             </div>
           </div>
         </section>
