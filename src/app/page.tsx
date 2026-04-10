@@ -1,6 +1,7 @@
 import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
 import KakaoMap from "@/app/components/KakaoMap";
+import WeddingCountdown from "@/app/components/WeddingCountdown";
 
 export default function Home() {
   return (
@@ -138,6 +139,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <WeddingCountdown initialNow={Date.now()} />
 
         {/* Gallery Section */}
         <Gallery />
