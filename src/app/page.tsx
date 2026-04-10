@@ -29,9 +29,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="border-b border-black/10 bg-white px-6 py-5 text-center shadow-sm">
-            <p className="text-sm sm:text-base text-gray-800 font-light">2026년 7월 11일 토요일 오후 5시</p>
-            <p className="mt-1 text-sm sm:text-base text-gray-600 font-light">르비르모어 선릉</p>
+          <div className="px-6 pt-7 pb-4 text-center">
+            <div className="mx-auto max-w-[34rem] border-y border-black/35 py-6">
+              <p className="text-[1.2rem] sm:text-[1.35rem] leading-snug text-gray-800 font-normal tracking-[-0.01em]">
+                2026년 7월 11일 토요일 오후 5시
+              </p>
+              <p className="mt-2 text-[1.3rem] sm:text-[1.45rem] leading-snug text-gray-700 font-medium tracking-[-0.01em]">
+                르비르모어 선릉
+              </p>
+            </div>
           </div>
         </section>
 
