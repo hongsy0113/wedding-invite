@@ -62,9 +62,6 @@ export default function Home() {
                 <p className="text-sm sm:text-base font-light">홍성윤 <span className="mx-1">|</span> 김민지</p>
               </div>
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white/70" />
-              <div className="absolute bottom-8 left-0 right-0 text-center px-6">
-                <p className="text-2xl sm:text-3xl text-gray-800 italic font-serif">Sungyoon and Minji</p>
-              </div>
             </div>
           </div>
           <div className="px-6 pt-7 pb-4 text-center">
