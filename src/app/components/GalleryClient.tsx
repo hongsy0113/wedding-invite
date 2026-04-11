@@ -10,6 +10,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
     return idx;
   });
   const canShowMore = visible < imageIds.length;
+  const canCollapse = visible > initialCount;
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
@@ -76,14 +77,55 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
           </button>
         ))}
       </div>
-      {canShowMore && (
+      {(canShowMore || canCollapse) && (
         <div className="mt-4 flex justify-center">
-          <button
-            className="px-4 py-2 text-sm rounded-2xl border border-black/10 hover:bg-[#F5EFE6] shadow-sm font-light"
-            onClick={() => setVisible((v) => v + 6)}
-          >
-            더보기
-          </button>
+          {canShowMore ? (
+            <button
+              type="button"
+              aria-label="갤러리 더보기"
+              className="px-3 py-2 text-sm font-light text-gray-700 hover:text-gray-900 transition-colors"
+              onClick={() => setVisible((v) => v + 6)}
+            >
+              <span className="inline-flex items-center gap-1 leading-none">
+                <span>더보기</span>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              aria-label="갤러리 접기"
+              className="px-3 py-2 text-sm font-light text-gray-700 hover:text-gray-900 transition-colors"
+              onClick={() => setVisible(initialCount)}
+            >
+              <span className="inline-flex items-center gap-1 leading-none">
+                <span>접기</span>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M6 15l6-6 6 6" />
+                </svg>
+              </span>
+            </button>
+          )}
         </div>
       )}
       {lightboxIdx !== null && (
