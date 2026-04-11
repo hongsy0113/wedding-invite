@@ -2,6 +2,7 @@ import Image from "next/image";
 import GalleryClient from "@/app/components/GalleryClient";
 import KakaoMap from "@/app/components/KakaoMap";
 import WeddingCountdown from "@/app/components/WeddingCountdown";
+import NavigationButtons from "@/app/components/NavigationButtons";
 
 export default function Home() {
   return (
@@ -159,6 +160,7 @@ export default function Home() {
           <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
             <KakaoMap address="서울 강남구 테헤란로 406" />
           </div>
+          <NavigationButtons />
           <div className="mt-8 space-y-9 text-center">
             <div className="space-y-3">
               <h3 className="text-[15px] text-[#C9979C] font-semibold">주소</h3>
