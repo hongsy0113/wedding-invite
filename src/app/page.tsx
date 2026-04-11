@@ -3,42 +3,7 @@ import GalleryClient from "@/app/components/GalleryClient";
 import KakaoMap from "@/app/components/KakaoMap";
 import WeddingCountdown from "@/app/components/WeddingCountdown";
 import NavigationButtons from "@/app/components/NavigationButtons";
-import { existsSync, readdirSync } from "fs";
-import path from "path";
-
-function getGalleryImages() {
-  const galleryDir = path.join(process.cwd(), "public", "image", "gallery-image");
-  const optimizedThumbDir = path.join(process.cwd(), "public", "image", "optimized", "thumb");
-  const optimizedLargeDir = path.join(process.cwd(), "public", "image", "optimized", "large");
-  const imageExtPattern = /\.(jpg|jpeg|png|webp|avif)$/i;
-
-  try {
-    return readdirSync(galleryDir)
-      .filter((fileName) => imageExtPattern.test(fileName))
-      .sort((a, b) => a.localeCompare(b, "ko", { numeric: true }))
-      .map((fileName, idx) => {
-        const baseName = path.parse(fileName).name;
-        const optimizedFileName = `${baseName}.jpg`;
-        const optimizedThumbPath = path.join(optimizedThumbDir, optimizedFileName);
-        const optimizedLargePath = path.join(optimizedLargeDir, optimizedFileName);
-
-        const thumbSrc = existsSync(optimizedThumbPath)
-          ? `/image/optimized/thumb/${encodeURIComponent(optimizedFileName)}`
-          : `/image/gallery-image/${encodeURIComponent(fileName)}`;
-        const largeSrc = existsSync(optimizedLargePath)
-          ? `/image/optimized/large/${encodeURIComponent(optimizedFileName)}`
-          : `/image/gallery-image/${encodeURIComponent(fileName)}`;
-
-        return {
-          thumbSrc,
-          largeSrc,
-          alt: `갤러리 이미지 ${idx + 1}`,
-        };
-      });
-  } catch {
-    return [];
-  }
-}
+import galleryImages from "@/data/gallery-images.json";
 
 export default function Home() {
   return (
@@ -246,13 +211,12 @@ export default function Home() {
 }
 
 function Gallery() {
-  const images = getGalleryImages();
-  const initialCount = Math.min(12, images.length);
+  const initialCount = Math.min(12, galleryImages.length);
 
   return (
     <section className="px-6 py-10">
       <h2 className="text-lg font-light mb-3 text-center text-gray-800" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>갤러리</h2>
-      <GalleryClient initialCount={initialCount} images={images} />
+      <GalleryClient initialCount={initialCount} images={galleryImages} />
     </section>
   );
 }

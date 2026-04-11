@@ -26,4 +26,6 @@ while IFS= read -r -d '' file_path; do
   sips -s format jpeg -s formatOptions 76 -Z 720 "$file_path" --out "$THUMB_DIR/$base_name.jpg" >/dev/null 2>&1
 done
 
+node "$ROOT_DIR/scripts/generate-gallery-manifest.mjs" >/dev/null
+
 echo "Image optimization completed"
