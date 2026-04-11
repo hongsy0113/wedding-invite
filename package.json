@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "images:optimize": "./scripts/optimize-images.sh"
   },
   "dependencies": {
     "lucide-react": "^0.545.0",

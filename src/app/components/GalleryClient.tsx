@@ -3,13 +3,18 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-export default function GalleryClient({ initialCount }: { initialCount: number }) {
+type GalleryClientProps = {
+  initialCount: number;
+  images: Array<{
+    thumbSrc: string;
+    largeSrc: string;
+    alt: string;
+  }>;
+};
+
+export default function GalleryClient({ initialCount, images }: GalleryClientProps) {
   const [visible, setVisible] = useState(initialCount);
-  const imageIds = Array.from({ length: 12 }).map((_, i) => {
-    const idx = String(i + 1).padStart(2, "0");
-    return idx;
-  });
-  const canShowMore = visible < imageIds.length;
+  const canShowMore = visible < images.length;
   const canCollapse = visible > initialCount;
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -49,27 +54,35 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
 
   const showPrev = () => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + imageIds.length - 1) % imageIds.length);
+    setLightboxIdx((lightboxIdx + images.length - 1) % images.length);
   };
   const showNext = () => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + 1) % imageIds.length);
+    setLightboxIdx((lightboxIdx + 1) % images.length);
   };
+
+  if (images.length === 0) {
+    return (
+      <p className="text-sm text-center text-gray-500 font-light py-6">
+        갤러리 이미지를 준비 중입니다.
+      </p>
+    );
+  }
 
   return (
     <div>
       <div className="grid grid-cols-3 gap-2">
-        {imageIds.slice(0, visible).map((id, idx) => (
+        {images.slice(0, visible).map((image, idx) => (
           <button
-            key={id}
+            key={image.largeSrc}
             type="button"
             aria-label="이미지 확대 보기"
             className="relative aspect-square overflow-hidden rounded-md"
             onClick={() => setLightboxIdx(idx)}
           >
             <Image
-              src={`/image/optimized/thumb/detail-image-${id}.jpg`}
-              alt="갤러리 이미지"
+              src={image.thumbSrc}
+              alt={image.alt}
               fill
               sizes="(max-width: 640px) 33vw, 220px"
               className="object-cover"
@@ -84,7 +97,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
               type="button"
               aria-label="갤러리 더보기"
               className="px-3 py-2 text-sm font-light text-gray-700 hover:text-gray-900 transition-colors"
-              onClick={() => setVisible((v) => v + 6)}
+              onClick={() => setVisible(images.length)}
             >
               <span className="inline-flex items-center gap-1 leading-none">
                 <span>더보기</span>
@@ -148,7 +161,7 @@ export default function GalleryClient({ initialCount }: { initialCount: number }
           </button>
           <div className="relative w-[90vw] h-[80vh]">
             <Image
-              src={`/image/optimized/large/detail-image-${imageIds[lightboxIdx]}.jpg`}
+              src={images[lightboxIdx].largeSrc}
               alt="확대 이미지"
               fill
               className="object-contain"
