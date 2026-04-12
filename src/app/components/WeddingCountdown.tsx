@@ -14,12 +14,8 @@ function getTimeLeft(now: number) {
   };
 }
 
-type WeddingCountdownProps = {
-  initialNow: number;
-};
-
-export default function WeddingCountdown({ initialNow }: WeddingCountdownProps) {
-  const [now, setNow] = useState(initialNow);
+export default function WeddingCountdown() {
+  const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
     setNow(Date.now());
