@@ -200,7 +200,7 @@ export default function Home() {
           <AccountSection />
         </section>
 
-        <footer className="px-6 py-10 text-center text-xs text-gray-500 font-light">감사합니다.</footer>
+        <footer className="px-6 py-10 text-center text-[10px] text-gray-400 font-light tracking-wide">Powered by 신랑 홍성윤</footer>
       </main>
     </div>
   );
