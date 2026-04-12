@@ -3,6 +3,7 @@ import GalleryClient from "@/app/components/GalleryClient";
 import KakaoMap from "@/app/components/KakaoMap";
 import WeddingCountdown from "@/app/components/WeddingCountdown";
 import NavigationButtons from "@/app/components/NavigationButtons";
+import AccountSection from "@/app/components/AccountSection";
 import galleryImages from "@/data/gallery-images.json";
 
 export default function Home() {
@@ -188,20 +189,15 @@ export default function Home() {
 
         {/* Gift Section */}
         <section className="px-6 py-10">
-          <h2 className="text-lg font-light mb-3 text-center text-gray-800" style={{ fontFamily: 'var(--font-noto-serif-kr)' }}>마음 전하실 곳</h2>
-          <p className="text-sm text-gray-600 mb-4 font-light">
-            축하의 마음을 전해주시는 분들을 위해 계좌번호를 안내드립니다.
+          <h2 className="text-[1.35rem] sm:text-[1.5rem] font-semibold text-[#C9979C] tracking-[-0.01em] text-center mb-8">마음 전하실 곳</h2>
+          <p className="mb-4 text-center text-sm leading-relaxed text-gray-600 font-light">
+            멀리서도 축하의 마음을
+            <br />
+            전하고 싶으신 분들을 위해
+            <br />
+            계좌번호를 안내드립니다.
           </p>
-          <div className="grid grid-cols-1 gap-3 text-sm">
-            <div className="rounded-2xl border border-black/10 p-4 shadow-sm">
-              <p className="font-light mb-1">신랑측</p>
-              <p className="text-gray-700 font-light">국민 000000-00-000000 (홍길동)</p>
-            </div>
-            <div className="rounded-2xl border border-black/10 p-4 shadow-sm">
-              <p className="font-light mb-1">신부측</p>
-              <p className="text-gray-700 font-light">신한 000-000-000000 (김하나)</p>
-            </div>
-        </div>
+          <AccountSection />
         </section>
 
         <footer className="px-6 py-10 text-center text-xs text-gray-500 font-light">감사합니다.</footer>
