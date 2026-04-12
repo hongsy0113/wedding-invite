@@ -6,6 +6,35 @@ import NavigationButtons from "@/app/components/NavigationButtons";
 import AccountSection from "@/app/components/AccountSection";
 import galleryImages from "@/data/gallery-images.json";
 
+const invitationIntroLines = [
+  "7번째 여름을 함께 맞이하며,",
+  "7월의 햇살 아래에서",
+  "저희 두 사람이 사랑의 결실을 맺고자 합니다.",
+];
+
+const invitationPromiseLines = [
+  "익숙함에 기대어 서로를 당연하게 여기기보다,",
+  "매 순간 서로의 소중함을 잊지 않고 살아가겠습니다.",
+  "저희 두 사람이 함께하는 새로운 시작에",
+  "귀한 발걸음으로 축복해 주시면 감사하겠습니다.",
+];
+
+const venueAddressLines = [
+  "서울특별시 강남구 테헤란로 406",
+  "(대치동 889-5)",
+  "샹제리제센터 A동 2층 단독홀",
+];
+
+const venueTransitLines = [
+  "2호선, 수인분당선 선릉역 1번 출구 앞",
+  "(지하 상가 연결)",
+];
+
+const venueDrivingLines = [
+  "네비게이션에 '르비르모어' 검색",
+  "(주차 2시간 무료)",
+];
+
 export default function Home() {
   return (
     <div className="font-sans bg-background text-foreground">
@@ -51,19 +80,22 @@ export default function Home() {
             소중한 분들을 초대합니다.
           </h2>
           <div
-            className="mx-auto max-w-[31rem] text-center text-[0.98rem] sm:text-[1.08rem] leading-[2rem] sm:leading-[2.2rem] font-light tracking-[-0.01em] text-gray-700"
+            className="mx-auto max-w-[31rem] text-center text-[clamp(0.83rem,3.4vw,1.08rem)] leading-[2rem] sm:leading-[2.2rem] font-light tracking-[-0.01em] text-gray-700"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
             <p>
-              7번째 여름을 함께 맞이하며,<br />
-              7월의 햇살 아래에서<br />
-              저희 두 사람이 사랑의 결실을 맺고자 합니다.
+              {invitationIntroLines.map((line) => (
+                <span key={line} className="block whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </p>
             <p className="mt-8">
-              익숙함에 기대어 서로를 당연하게 여기기보다,<br />
-              매 순간 서로의 소중함을 잊지 않고 살아가겠습니다.<br />
-              저희 두 사람이 함께하는 새로운 시작에<br />
-              귀한 발걸음으로 축복해 주시면 감사하겠습니다.
+              {invitationPromiseLines.map((line) => (
+                <span key={line} className="block whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </p>
           </div>
         </section>
@@ -164,24 +196,33 @@ export default function Home() {
             <div className="space-y-3">
               <h3 className="text-[15px] text-[#C9979C] font-semibold">주소</h3>
               <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
-                서울특별시 강남구 테헤란로 406 (대치동 889-5)
-              </p>
-              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
-                샹제리제센터 A동 2층 단독홀
+                {venueAddressLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
               </p>
             </div>
 
             <div className="space-y-3">
               <h3 className="text-[15px] text-[#C9979C] font-semibold">대중교통</h3>
               <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
-                2호선, 수인분당선 선릉역 1번 출구 앞 (지하 상가 연결)
+                {venueTransitLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
               </p>
             </div>
 
             <div className="space-y-3">
               <h3 className="text-[15px] text-[#C9979C] font-semibold">자차</h3>
               <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
-                네비게이션에 &apos;르비르모어&apos; 검색 (주차 2시간 무료)
+                {venueDrivingLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
               </p>
             </div>
           </div>
