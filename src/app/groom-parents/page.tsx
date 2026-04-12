@@ -4,7 +4,15 @@ export default function GroomParentsPage() {
   return (
     <WeddingInvitationPage
       showCountdown={false}
-      showGallery={false}
+      showGallery
+      galleryImageFileNames={[
+        "HI201690.jpg",
+        "HIS07869.jpg",
+        "HIS08662.jpg",
+        "DSC00394.jpg",
+        "DSC00757.jpg",
+        "DSC00800.jpg",
+      ]}
       showCoupleSection={false}
       invitationHeading="소중한 분들을 모십니다"
       invitationMessageBlocks={[

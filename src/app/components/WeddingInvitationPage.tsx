@@ -11,6 +11,8 @@ type WeddingInvitationPageProps = {
   showCountdown?: boolean;
   showGallery?: boolean;
   showCoupleSection?: boolean;
+  galleryImageLimit?: number;
+  galleryImageFileNames?: string[];
   invitationHeading?: string;
   invitationMessageBlocks?: string[][];
   invitationSignature?: ReactNode;
@@ -50,10 +52,31 @@ export default function WeddingInvitationPage({
   showCountdown = true,
   showGallery = true,
   showCoupleSection = true,
+  galleryImageLimit,
+  galleryImageFileNames,
   invitationHeading = "소중한 분들을 초대합니다.",
   invitationMessageBlocks = defaultInvitationMessageBlocks,
   invitationSignature,
 }: WeddingInvitationPageProps) {
+  const imageByFileName = new Map(
+    galleryImages.map((image) => [extractFileName(image.largeSrc), image])
+  );
+
+  const imagesByFileName =
+    galleryImageFileNames && galleryImageFileNames.length > 0
+      ? galleryImageFileNames
+          .map((fileName) => imageByFileName.get(fileName))
+          .filter((image): image is (typeof galleryImages)[number] => Boolean(image))
+      : null;
+
+  const visibleGalleryImages = imagesByFileName
+    ? imagesByFileName
+    : galleryImageLimit && galleryImageLimit > 0
+      ? galleryImages.slice(0, galleryImageLimit)
+      : galleryImages;
+
+  const galleryInitialCount = Math.min(12, visibleGalleryImages.length);
+
   return (
     <div className="font-sans bg-background text-foreground">
       <main className="mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
@@ -198,7 +221,9 @@ export default function WeddingInvitationPage({
         </section>
 
         {showCountdown ? <WeddingCountdown /> : null}
-        {showGallery ? <Gallery /> : null}
+        {showGallery ? (
+          <Gallery images={visibleGalleryImages} initialCount={galleryInitialCount} />
+        ) : null}
 
         {/* Location Section */}
         <section className="px-8 py-10">
@@ -279,9 +304,18 @@ export default function WeddingInvitationPage({
   );
 }
 
-function Gallery() {
-  const initialCount = Math.min(12, galleryImages.length);
+function extractFileName(src: string) {
+  const parts = src.split("/");
+  return parts[parts.length - 1] ?? src;
+}
 
+function Gallery({
+  images,
+  initialCount,
+}: {
+  images: typeof galleryImages;
+  initialCount: number;
+}) {
   return (
     <section className="px-6 py-10">
       <h2
@@ -290,7 +324,7 @@ function Gallery() {
       >
         갤러리
       </h2>
-      <GalleryClient initialCount={initialCount} images={galleryImages} />
+      <GalleryClient initialCount={initialCount} images={images} />
     </section>
   );
 }

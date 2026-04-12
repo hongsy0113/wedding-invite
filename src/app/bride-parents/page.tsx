@@ -4,7 +4,15 @@ export default function BrideParentsPage() {
   return (
     <WeddingInvitationPage
       showCountdown={false}
-      showGallery={false}
+      showGallery
+      galleryImageFileNames={[
+        "HI201690.jpg",
+        "HIS07869.jpg",
+        "HIS08662.jpg",
+        "DSC00394.jpg",
+        "DSC00757.jpg",
+        "DSC00800.jpg",
+      ]}
       showCoupleSection={false}
       invitationMessageBlocks={[
         [
