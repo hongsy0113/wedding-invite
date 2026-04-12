@@ -72,7 +72,9 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
   return (
     <div>
       <div className="grid grid-cols-3 gap-2">
-        {images.slice(0, visible).map((image, idx) => (
+        {images.slice(0, visible).map((image, idx) => {
+          const isTopAlignedThumb = image.thumbSrc.endsWith("/HIS08662.jpg");
+          return (
           <button
             key={image.largeSrc}
             type="button"
@@ -85,10 +87,11 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
               alt={image.alt}
               fill
               sizes="(max-width: 640px) 33vw, 220px"
-              className="object-cover"
+              className={isTopAlignedThumb ? "object-cover object-top" : "object-cover"}
             />
           </button>
-        ))}
+          );
+        })}
       </div>
       {(canShowMore || canCollapse) && (
         <div className="mt-4 flex justify-center">
