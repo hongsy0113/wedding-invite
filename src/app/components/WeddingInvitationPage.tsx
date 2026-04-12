@@ -5,23 +5,29 @@ import WeddingCountdown from "@/app/components/WeddingCountdown";
 import NavigationButtons from "@/app/components/NavigationButtons";
 import AccountSection from "@/app/components/AccountSection";
 import galleryImages from "@/data/gallery-images.json";
+import { ReactNode } from "react";
 
 type WeddingInvitationPageProps = {
   showCountdown?: boolean;
   showGallery?: boolean;
+  showCoupleSection?: boolean;
+  invitationHeading?: string;
+  invitationMessageBlocks?: string[][];
+  invitationSignature?: ReactNode;
 };
 
-const invitationIntroLines = [
-  "7번째 여름을 함께 맞이하며,",
-  "7월의 햇살 아래에서",
-  "저희 두 사람이 사랑의 결실을 맺고자 합니다.",
-];
-
-const invitationPromiseLines = [
-  "익숙함에 기대어 서로를 당연하게 여기기보다,",
-  "매 순간 서로의 소중함을 잊지 않고 살아가겠습니다.",
-  "저희 두 사람이 함께하는 새로운 시작에",
-  "귀한 발걸음으로 축복해 주시면 감사하겠습니다.",
+const defaultInvitationMessageBlocks = [
+  [
+    "7번째 여름을 함께 맞이하며,",
+    "7월의 햇살 아래에서",
+    "저희 두 사람이 사랑의 결실을 맺고자 합니다.",
+  ],
+  [
+    "익숙함에 기대어 서로를 당연하게 여기기보다,",
+    "매 순간 서로의 소중함을 잊지 않고 살아가겠습니다.",
+    "저희 두 사람이 함께하는 새로운 시작에",
+    "귀한 발걸음으로 축복해 주시면 감사하겠습니다.",
+  ],
 ];
 
 const venueAddressLines = [
@@ -43,6 +49,10 @@ const venueDrivingLines = [
 export default function WeddingInvitationPage({
   showCountdown = true,
   showGallery = true,
+  showCoupleSection = true,
+  invitationHeading = "소중한 분들을 초대합니다.",
+  invitationMessageBlocks = defaultInvitationMessageBlocks,
+  invitationSignature,
 }: WeddingInvitationPageProps) {
   return (
     <div className="font-sans bg-background text-foreground">
@@ -87,44 +97,46 @@ export default function WeddingInvitationPage({
             className="mx-auto mb-10 w-fit text-center text-[1.4rem] sm:text-[1.55rem] font-normal tracking-[-0.01em] text-emerald-700"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
-            소중한 분들을 초대합니다.
+            {invitationHeading}
           </h2>
           <div
             className="mx-auto max-w-[31rem] text-center text-[clamp(0.83rem,3.4vw,1.08rem)] leading-[2rem] sm:leading-[2.2rem] font-light tracking-[-0.01em] text-gray-700"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
-            <p>
-              {invitationIntroLines.map((line) => (
-                <span key={line} className="block whitespace-nowrap">
-                  {line}
-                </span>
-              ))}
-            </p>
-            <p className="mt-8">
-              {invitationPromiseLines.map((line) => (
-                <span key={line} className="block whitespace-nowrap">
-                  {line}
-                </span>
-              ))}
-            </p>
+            {invitationMessageBlocks.map((block, blockIndex) => (
+              <p key={`message-block-${blockIndex}`} className={blockIndex === 0 ? undefined : "mt-8"}>
+                {block.map((line) => (
+                  <span key={line} className="block whitespace-nowrap">
+                    {line}
+                  </span>
+                ))}
+              </p>
+            ))}
+            {invitationSignature ? (
+              <p className="mt-8 text-[clamp(0.83rem,3.4vw,1.08rem)] text-gray-700">
+                {invitationSignature}
+              </p>
+            ) : null}
           </div>
         </section>
 
         {/* Couple Section */}
-        <section className="px-6 py-10">
-          <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.8rem,2.45vw,1.08rem)] sm:text-[1.1rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-light">
-            <div className="mx-auto grid w-fit grid-cols-[auto_1.2em_2.4em_auto] items-baseline gap-y-5">
-              <span className="justify-self-end">홍근표 · 최문주</span>
-              <span className="w-full text-center text-[0.88em]">의</span>
-              <span className="w-full text-center text-[0.88em]">아들</span>
-              <span className="justify-self-start">성윤</span>
-              <span className="justify-self-end">김덕규 · 손정희</span>
-              <span className="w-full text-center text-[0.88em]">의</span>
-              <span className="w-full text-center text-[0.88em]">딸</span>
-              <span className="justify-self-start">민지</span>
+        {showCoupleSection ? (
+          <section className="px-6 py-10">
+            <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.8rem,2.45vw,1.08rem)] sm:text-[1.1rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-light">
+              <div className="mx-auto grid w-fit grid-cols-[auto_1.2em_2.4em_auto] items-baseline gap-y-5">
+                <span className="justify-self-end">홍근표 · 최문주</span>
+                <span className="w-full text-center text-[0.88em]">의</span>
+                <span className="w-full text-center text-[0.88em]">아들</span>
+                <span className="justify-self-start">성윤</span>
+                <span className="justify-self-end">김덕규 · 손정희</span>
+                <span className="w-full text-center text-[0.88em]">의</span>
+                <span className="w-full text-center text-[0.88em]">딸</span>
+                <span className="justify-self-start">민지</span>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : null}
 
         {/* Date / Calendar Section */}
         <section className="px-8 sm:px-10 py-12">
