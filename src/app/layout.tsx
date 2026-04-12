@@ -1,26 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-function resolveMetadataBase(): URL {
-  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  const rawVercelUrl = process.env.VERCEL_URL?.trim();
-  const candidate = rawSiteUrl || rawVercelUrl;
-
-  if (!candidate) return new URL("http://localhost:3000");
-
-  try {
-    return new URL(candidate);
-  } catch {
-    // Some deployments provide a bare hostname (e.g. "my-site.vercel.app").
-  }
-
-  try {
-    return new URL(`https://${candidate}`);
-  } catch {
-    return new URL("http://localhost:3000");
-  }
-}
-
+const siteUrl = "https://sungyoon-minji.vercel.app";
 const ogImagePath = "/image/optimized/main-image.jpg";
 
 export const metadata: Metadata = {
@@ -30,7 +11,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-  metadataBase: resolveMetadataBase(),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "성윤 💕 민지 결혼식 초대장",
     description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
@@ -41,7 +22,7 @@ export const metadata: Metadata = {
       {
         url: ogImagePath,
         width: 1200,
-        height: 630,
+        height: 1800,
         alt: "성윤 민지 결혼식 초대장",
       },
     ],
