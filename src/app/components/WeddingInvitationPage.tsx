@@ -104,8 +104,8 @@ export default function WeddingInvitationPage({
             <div className="absolute inset-0">
               <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-white/95 to-transparent" />
               <div className="absolute top-6 left-0 right-0 text-center px-6 text-gray-900">
-                <p className="text-[10px] tracking-[0.35em] mb-2 font-light uppercase">WEDDING INVITATION</p>
-                <p className="text-sm sm:text-base font-light">
+                <p className="text-[11px] tracking-[0.35em] mb-2 font-normal uppercase">WEDDING INVITATION</p>
+                <p className="text-base sm:text-lg font-medium">
                   홍성윤 <span className="mx-1">|</span> 김민지
                 </p>
               </div>
@@ -114,10 +114,10 @@ export default function WeddingInvitationPage({
           </div>
           <div className="px-6 pt-7 pb-4 text-center">
             <div className="mx-auto max-w-[34rem] border-y border-black/35 py-6">
-              <p className="text-[1.2rem] sm:text-[1.35rem] leading-snug text-gray-800 font-normal tracking-[-0.01em]">
+              <p className="text-[1.2rem] sm:text-[1.35rem] leading-snug text-gray-800 font-[501] tracking-[-0.01em]">
                 2026년 7월 11일 토요일 오후 5시
               </p>
-              <p className="mt-2 text-[1.3rem] sm:text-[1.45rem] leading-snug text-gray-700 font-medium tracking-[-0.01em]">
+              <p className="mt-2 text-[1.3rem] sm:text-[1.45rem] leading-snug text-gray-700 font-[501] tracking-[-0.01em]">
                 르비르모어 선릉
               </p>
             </div>
@@ -127,13 +127,13 @@ export default function WeddingInvitationPage({
         {/* Invitation Message */}
         <section className="px-6 py-14 sm:py-16">
           <h2
-            className="mx-auto mb-10 w-fit text-center text-[1.4rem] sm:text-[1.55rem] font-normal tracking-[-0.01em] text-emerald-700"
+            className="mx-auto mb-10 w-fit text-center text-[1.4rem] sm:text-[1.55rem] font-[650] tracking-[-0.01em] text-emerald-700"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
             {invitationHeading}
           </h2>
           <div
-            className="mx-auto max-w-[31rem] text-center text-[clamp(0.83rem,3.4vw,1.08rem)] leading-[2rem] sm:leading-[2.2rem] font-light tracking-[-0.01em] text-gray-700"
+            className="mx-auto max-w-[31rem] text-center text-[clamp(0.96rem,3.8vw,1.22rem)] leading-[2.05rem] sm:leading-[2.25rem] font-[501] tracking-[-0.01em] text-gray-700"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
             {invitationMessageBlocks.map((block, blockIndex) => (
@@ -146,7 +146,7 @@ export default function WeddingInvitationPage({
               </p>
             ))}
             {invitationSignature ? (
-              <p className="mt-8 text-[clamp(0.83rem,3.4vw,1.08rem)] text-gray-700">
+              <p className="mt-8 text-[clamp(0.9rem,3.6vw,1.14rem)] text-gray-700">
                 {invitationSignature}
               </p>
             ) : null}
@@ -156,7 +156,7 @@ export default function WeddingInvitationPage({
         {/* Couple Section */}
         {showCoupleSection ? (
           <section className="px-6 py-10">
-            <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.8rem,2.45vw,1.08rem)] sm:text-[1.1rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-light">
+            <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.85rem,2.55vw,1.12rem)] sm:text-[1.14rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-[501]">
               <div className="mx-auto grid w-fit grid-cols-[auto_1.2em_2.4em_auto] items-baseline gap-y-5">
                 <span className="justify-self-end">홍근표 · 최문주</span>
                 <span className="w-full text-center text-[0.88em]">의</span>
@@ -174,17 +174,17 @@ export default function WeddingInvitationPage({
         {/* Date / Calendar Section */}
         <section className="px-8 sm:px-10 py-12">
           <div className="mx-auto max-w-[27rem] text-center">
-            <h2 className="text-[1.35rem] sm:text-[1.5rem] font-semibold text-[#C9979C] tracking-[-0.01em]">
+            <h2 className="text-[1.35rem] sm:text-[1.5rem] font-[650] text-[#C9979C] tracking-[-0.01em]">
               예식 안내
             </h2>
-            <p className="mt-8 whitespace-nowrap text-[1.05rem] sm:text-[1.2rem] leading-snug font-normal text-[#333333] tracking-[-0.01em]">
+            <p className="mt-8 whitespace-nowrap text-[1.1rem] sm:text-[1.25rem] leading-snug font-[501] text-[#333333] tracking-[-0.01em]">
               2026년 7월 11일 토요일 오후 5시
             </p>
-            <p className="mt-4 whitespace-nowrap text-[1.05rem] sm:text-[1.2rem] leading-snug font-normal text-[#333333] tracking-[-0.01em]">
+            <p className="mt-4 whitespace-nowrap text-[1.1rem] sm:text-[1.25rem] leading-snug font-[501] text-[#333333] tracking-[-0.01em]">
               르비르모어 선릉
             </p>
 
-            <p className="mt-14 text-[1.5rem] sm:text-[1.7rem] font-semibold text-[#C9979C] tracking-[-0.01em]">7월</p>
+            <p className="mt-14 text-[1.5rem] sm:text-[1.7rem] font-[650] text-[#C9979C] tracking-[-0.01em]">7월</p>
 
             <div className="mt-10 grid grid-cols-7 gap-y-4 sm:gap-y-6 text-center text-[1.05rem] sm:text-[1.9rem] leading-none">
               {Array.from({ length: 7 }).map((_, i) => (
@@ -238,16 +238,16 @@ export default function WeddingInvitationPage({
         {/* Location Section */}
         <section className="px-8 py-10">
           <h2
-            className="text-lg font-semibold mb-12 text-center text-[#C9979C]"
+            className="text-xl font-[650] mb-12 text-center text-[#C9979C]"
             style={{ fontFamily: "var(--font-noto-serif-kr)" }}
           >
             오시는 길
           </h2>
           <div className="mb-7 text-center space-y-4 max-w-[320px] mx-auto">
-            <p className="text-[16px] sm:text-[20px] leading-relaxed text-[#2D2D2D] font-light tracking-[-0.01em]">
+            <p className="text-[17px] sm:text-[21px] leading-relaxed text-[#2D2D2D] font-[501] tracking-[-0.01em]">
               르비르모어 선릉
             </p>
-            <p className="text-[14px] sm:text-[17px] leading-relaxed text-[#444444] font-light">
+            <p className="text-[15px] sm:text-[18px] leading-relaxed text-[#444444] font-[501]">
               서울시 강남구 테헤란로 406 A동
             </p>
           </div>
@@ -257,8 +257,8 @@ export default function WeddingInvitationPage({
           <NavigationButtons />
           <div className="mt-8 space-y-9 text-center">
             <div className="space-y-3">
-              <h3 className="text-[15px] text-[#C9979C] font-semibold">주소</h3>
-              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+              <h3 className="text-[16px] text-[#C9979C] font-[650]">주소</h3>
+              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[501]">
                 {venueAddressLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -268,8 +268,8 @@ export default function WeddingInvitationPage({
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-[15px] text-[#C9979C] font-semibold">대중교통</h3>
-              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+              <h3 className="text-[16px] text-[#C9979C] font-[650]">대중교통</h3>
+              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[501]">
                 {venueTransitLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -279,8 +279,8 @@ export default function WeddingInvitationPage({
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-[15px] text-[#C9979C] font-semibold">자차</h3>
-              <p className="text-[15px] leading-relaxed text-[#3B3B3B] font-light">
+              <h3 className="text-[16px] text-[#C9979C] font-[650]">자차</h3>
+              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[501]">
                 {venueDrivingLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -293,10 +293,10 @@ export default function WeddingInvitationPage({
 
         {/* Gift Section */}
         <section className="px-6 py-10">
-          <h2 className="text-[1.35rem] sm:text-[1.5rem] font-semibold text-[#C9979C] tracking-[-0.01em] text-center mb-8">
+          <h2 className="text-[1.35rem] sm:text-[1.5rem] font-[650] text-[#C9979C] tracking-[-0.01em] text-center mb-8">
             마음 전하실 곳
           </h2>
-          <p className="mb-4 text-center text-sm leading-relaxed text-gray-600 font-light">
+          <p className="mb-4 text-center text-base leading-relaxed text-gray-600 font-[501]">
             멀리서도 축하의 마음을
             <br />
             전하고 싶으신 분들을 위해
@@ -306,7 +306,7 @@ export default function WeddingInvitationPage({
           <AccountSection items={accountItems} />
         </section>
 
-        <footer className="px-6 py-10 text-center text-[10px] text-gray-400 font-light tracking-wide">
+        <footer className="px-6 py-10 text-center text-[11px] text-gray-400 font-normal tracking-wide">
           Powered by 신랑 홍성윤
         </footer>
       </main>
@@ -329,7 +329,7 @@ function Gallery({
   return (
     <section className="px-6 py-10">
       <h2
-        className="text-lg font-light mb-3 text-center text-gray-800"
+        className="text-xl font-normal mb-3 text-center text-gray-800"
         style={{ fontFamily: "var(--font-noto-serif-kr)" }}
       >
         갤러리
