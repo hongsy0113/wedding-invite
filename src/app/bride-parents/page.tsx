@@ -29,6 +29,22 @@ export default function BrideParentsPage() {
           {" 拜上"}
         </>
       }
+      accountItems={[
+        {
+          id: "bride-father",
+          label: "신부 아버지 계좌",
+          number: "815240286382",
+          detail: "국민은행 김덕규",
+          copyValue: "국민은행 815240286382 김덕규",
+        },
+        {
+          id: "bride-mother",
+          label: "신부 어머니 계좌",
+          number: "829210424321",
+          detail: "국민은행 손정희",
+          copyValue: "국민은행 829210424321 손정희",
+        },
+      ]}
     />
   );
 }

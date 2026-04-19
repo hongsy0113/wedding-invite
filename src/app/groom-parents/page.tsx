@@ -30,6 +30,22 @@ export default function GroomParentsPage() {
           {" 拜上"}
         </>
       }
+      accountItems={[
+        {
+          id: "groom-father",
+          label: "신랑 아버지 계좌",
+          number: "001240441141",
+          detail: "국민은행 홍근표",
+          copyValue: "국민은행 001240441141 홍근표",
+        },
+        {
+          id: "groom-mother",
+          label: "신랑 어머니 계좌",
+          number: "814210729568",
+          detail: "국민은행 최문주",
+          copyValue: "국민은행 814210729568 최문주",
+        },
+      ]}
     />
   );
 }

@@ -7,6 +7,14 @@ import AccountSection from "@/app/components/AccountSection";
 import galleryImages from "@/data/gallery-images.json";
 import { ReactNode } from "react";
 
+type AccountItem = {
+  id: string;
+  label: string;
+  number: string;
+  detail: string;
+  copyValue: string;
+};
+
 type WeddingInvitationPageProps = {
   showCountdown?: boolean;
   showGallery?: boolean;
@@ -16,6 +24,7 @@ type WeddingInvitationPageProps = {
   invitationHeading?: string;
   invitationMessageBlocks?: string[][];
   invitationSignature?: ReactNode;
+  accountItems?: AccountItem[];
 };
 
 const defaultInvitationMessageBlocks = [
@@ -57,6 +66,7 @@ export default function WeddingInvitationPage({
   invitationHeading = "소중한 분들을 초대합니다.",
   invitationMessageBlocks = defaultInvitationMessageBlocks,
   invitationSignature,
+  accountItems,
 }: WeddingInvitationPageProps) {
   const imageByFileName = new Map(
     galleryImages.map((image) => [extractFileName(image.largeSrc), image])
@@ -293,7 +303,7 @@ export default function WeddingInvitationPage({
             <br />
             계좌번호를 안내드립니다.
           </p>
-          <AccountSection />
+          <AccountSection items={accountItems} />
         </section>
 
         <footer className="px-6 py-10 text-center text-[10px] text-gray-400 font-light tracking-wide">
