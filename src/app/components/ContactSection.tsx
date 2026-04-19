@@ -30,12 +30,12 @@ export default function ContactSection({ items }: ContactSectionProps) {
                 index === 0 ? "" : "border-t border-[#ECEDEF]"
               }`}
             >
-              <div className="flex min-w-0 flex-1 items-center justify-between gap-3">
-                <p className="min-w-0 truncate text-[0.97rem] sm:text-[1.03rem] text-[#333333] font-[550] tracking-[-0.01em]">
+              <div className="min-w-0 flex-1">
+                <p className="text-[0.97rem] sm:text-[1.03rem] text-[#333333] font-[550] tracking-[-0.01em]">
                   <span className="mr-2 text-[#C9979C]">{item.role}</span>
                   <span>{item.name}</span>
                 </p>
-                <p className="shrink-0 whitespace-nowrap text-[0.8rem] sm:text-[0.88rem] text-[#6B7280] font-medium tracking-[-0.01em]">
+                <p className="mt-1 text-[0.84rem] sm:text-[0.9rem] text-[#6B7280] font-medium tracking-[-0.01em]">
                   {item.phone}
                 </p>
               </div>
