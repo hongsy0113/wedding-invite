@@ -37,6 +37,12 @@ export default function BrideParentsFatherPage() {
         "DSC00394.jpg",
         "DSC00757.jpg",
         "DSC00800.jpg",
+        "HIS07160.jpg",
+        "HIS07508.jpg",
+        "HI202193.jpg",
+        "DSC00217.jpg",
+        "DSC00262.jpg",
+        "DSC01030.jpg",
       ]}
       showCoupleSection={false}
       invitationMessageBlocks={[
@@ -61,6 +67,14 @@ export default function BrideParentsFatherPage() {
           number: "815240286382",
           detail: "국민은행 김덕규",
           copyValue: "국민은행 815240286382 김덕규",
+        },
+      ]}
+      contactItems={[
+        {
+          id: "bride-father-contact",
+          role: "신부 아버지",
+          name: "김덕규",
+          phone: "010-8767-6989",
         },
       ]}
     />

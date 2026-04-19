@@ -12,6 +12,12 @@ export default function GroomParentsPage() {
         "DSC00394.jpg",
         "DSC00757.jpg",
         "DSC00800.jpg",
+        "HIS07160.jpg",
+        "HIS07508.jpg",
+        "HI202193.jpg",
+        "DSC00217.jpg",
+        "DSC00262.jpg",
+        "DSC01030.jpg",
       ]}
       showCoupleSection={false}
       invitationHeading="소중한 분들을 모십니다"
@@ -44,6 +50,20 @@ export default function GroomParentsPage() {
           number: "814210729568",
           detail: "국민은행 최문주",
           copyValue: "국민은행 814210729568 최문주",
+        },
+      ]}
+      contactItems={[
+        {
+          id: "groom-father-contact",
+          role: "신랑 아버지",
+          name: "홍근표",
+          phone: "010-9770-0813",
+        },
+        {
+          id: "groom-mother-contact",
+          role: "신랑 어머니",
+          name: "최문주",
+          phone: "010-3360-0421",
         },
       ]}
     />

@@ -4,6 +4,7 @@ import KakaoMap from "@/app/components/KakaoMap";
 import WeddingCountdown from "@/app/components/WeddingCountdown";
 import NavigationButtons from "@/app/components/NavigationButtons";
 import AccountSection from "@/app/components/AccountSection";
+import ContactSection from "@/app/components/ContactSection";
 import galleryImages from "@/data/gallery-images.json";
 import { ReactNode } from "react";
 
@@ -26,6 +27,14 @@ type WeddingInvitationPageProps = {
   invitationMessageBlocks?: string[][];
   invitationSignature?: ReactNode;
   accountItems?: AccountItem[];
+  contactItems?: ContactItem[];
+};
+
+type ContactItem = {
+  id: string;
+  role: string;
+  name: string;
+  phone: string;
 };
 
 const defaultInvitationMessageBlocks = [
@@ -69,6 +78,7 @@ export default function WeddingInvitationPage({
   invitationMessageBlocks = defaultInvitationMessageBlocks,
   invitationSignature,
   accountItems,
+  contactItems = [],
 }: WeddingInvitationPageProps) {
   const imageByFileName = new Map(
     galleryImages.map((image) => [extractFileName(image.largeSrc), image])
@@ -306,6 +316,7 @@ export default function WeddingInvitationPage({
             계좌번호를 안내드립니다.
           </p>
           <AccountSection items={accountItems} />
+          <ContactSection items={contactItems} />
         </section>
 
         <footer className="px-6 py-10 text-center text-[11px] text-gray-400 font-normal tracking-wide">

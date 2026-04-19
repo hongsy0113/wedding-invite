@@ -37,6 +37,12 @@ export default function BrideParentsMotherPage() {
         "DSC00394.jpg",
         "DSC00757.jpg",
         "DSC00800.jpg",
+        "HIS07160.jpg",
+        "HIS07508.jpg",
+        "HI202193.jpg",
+        "DSC00217.jpg",
+        "DSC00262.jpg",
+        "DSC01030.jpg",
       ]}
       showCoupleSection={false}
       invitationMessageBlocks={[
@@ -61,6 +67,14 @@ export default function BrideParentsMotherPage() {
           number: "829210424321",
           detail: "국민은행 손정희",
           copyValue: "국민은행 829210424321 손정희",
+        },
+      ]}
+      contactItems={[
+        {
+          id: "bride-mother-contact",
+          role: "신부 어머니",
+          name: "손정희",
+          phone: "010-5039-6981",
         },
       ]}
     />

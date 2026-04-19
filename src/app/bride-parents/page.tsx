@@ -37,6 +37,12 @@ export default function BrideParentsPage() {
         "DSC00394.jpg",
         "DSC00757.jpg",
         "DSC00800.jpg",
+        "HIS07160.jpg",
+        "HIS07508.jpg",
+        "HI202193.jpg",
+        "DSC00217.jpg",
+        "DSC00262.jpg",
+        "DSC01030.jpg",
       ]}
       showCoupleSection={false}
       invitationMessageBlocks={[
@@ -68,6 +74,20 @@ export default function BrideParentsPage() {
           number: "829210424321",
           detail: "국민은행 손정희",
           copyValue: "국민은행 829210424321 손정희",
+        },
+      ]}
+      contactItems={[
+        {
+          id: "bride-father-contact",
+          role: "신부 아버지",
+          name: "김덕규",
+          phone: "010-8767-6989",
+        },
+        {
+          id: "bride-mother-contact",
+          role: "신부 어머니",
+          name: "손정희",
+          phone: "010-5039-6981",
         },
       ]}
     />
