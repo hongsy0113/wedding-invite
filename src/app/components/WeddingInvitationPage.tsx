@@ -49,7 +49,7 @@ const venueAddressLines = [
 
 const venueTransitLines = [
   "2호선, 수인분당선 선릉역 1번 출구 앞",
-  "(지하 상가 연결)",
+  "(지하철역 내부 연결)",
 ];
 
 const venueDrivingLines = [
