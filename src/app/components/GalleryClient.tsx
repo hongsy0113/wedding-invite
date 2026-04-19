@@ -22,6 +22,7 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
   const slideViewportRef = useRef<HTMLDivElement | null>(null);
   const pointerIdRef = useRef<number | null>(null);
   const dragStartXRef = useRef(0);
+  const dragOffsetXRef = useRef(0);
   const [dragOffsetX, setDragOffsetX] = useState(0);
   const [slideDirection, setSlideDirection] = useState<-1 | 0 | 1>(0);
   const [isSnapBack, setIsSnapBack] = useState(false);
@@ -68,15 +69,28 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
       setIsDragging(false);
       pointerIdRef.current = null;
       dragStartXRef.current = 0;
+      dragOffsetXRef.current = 0;
     }
   }, [lightboxIdx]);
 
+  useEffect(() => {
+    if (!isSnapBack) return;
+    const timer = window.setTimeout(() => {
+      setIsSnapBack(false);
+    }, 380);
+    return () => window.clearTimeout(timer);
+  }, [isSnapBack]);
+
   const showPrev = () => {
-    if (lightboxIdx === null || slideDirection !== 0 || isSnapBack) return;
+    if (lightboxIdx === null || slideDirection !== 0) return;
+    setIsSnapBack(false);
+    setDragOffsetX(0);
     setSlideDirection(-1);
   };
   const showNext = () => {
-    if (lightboxIdx === null || slideDirection !== 0 || isSnapBack) return;
+    if (lightboxIdx === null || slideDirection !== 0) return;
+    setIsSnapBack(false);
+    setDragOffsetX(0);
     setSlideDirection(1);
   };
 
@@ -86,12 +100,14 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
   const resetDragState = () => {
     pointerIdRef.current = null;
     dragStartXRef.current = 0;
+    dragOffsetXRef.current = 0;
     setIsDragging(false);
   };
 
   const handleSlidePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (slideDirection !== 0 || isSnapBack) return;
+    if (slideDirection !== 0) return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
+    setIsSnapBack(false);
     pointerIdRef.current = e.pointerId;
     dragStartXRef.current = e.clientX;
     setIsDragging(true);
@@ -101,6 +117,7 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
   const handleSlidePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
     if (pointerIdRef.current !== e.pointerId) return;
     const delta = e.clientX - dragStartXRef.current;
+    dragOffsetXRef.current = delta;
     setDragOffsetX(delta);
   };
 
@@ -112,13 +129,18 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
 
     const viewportWidth = slideViewportRef.current?.clientWidth ?? 0;
     const threshold = Math.max(40, Math.min(120, viewportWidth * 0.16));
-    const shouldMove = Math.abs(dragOffsetX) > threshold;
+    const offset = dragOffsetXRef.current;
+    const shouldMove = Math.abs(offset) > threshold;
 
     if (shouldMove) {
-      setSlideDirection(dragOffsetX < 0 ? 1 : -1);
+      setSlideDirection(offset < 0 ? 1 : -1);
+      setDragOffsetX(0);
+    } else if (Math.abs(offset) > 0.5) {
+      setIsSnapBack(true);
       setDragOffsetX(0);
     } else {
-      setIsSnapBack(true);
+      // No effective drag happened, so do not enter snap-back lock state.
+      setIsSnapBack(false);
       setDragOffsetX(0);
     }
 
@@ -229,7 +251,7 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
           <button
             type="button"
             aria-label="닫기"
-            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20"
+            className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20"
             onClick={() => setLightboxIdx(null)}
           >
             <span className="block h-6 w-6 text-xl leading-6">×</span>
@@ -237,10 +259,21 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
           <button
             type="button"
             aria-label="이전"
-            className="absolute left-2 sm:left-4 p-3 rounded-full bg-white/10 hover:bg-white/20"
+            className="absolute left-2 sm:left-4 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20"
             onClick={showPrev}
           >
-            <span className="block h-6 w-6 text-2xl leading-6">‹</span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
           </button>
           <div
             ref={slideViewportRef}
@@ -285,10 +318,21 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
           <button
             type="button"
             aria-label="다음"
-            className="absolute right-2 sm:right-4 p-3 rounded-full bg-white/10 hover:bg-white/20"
+            className="absolute right-2 sm:right-4 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20"
             onClick={showNext}
           >
-            <span className="block h-6 w-6 text-2xl leading-6">›</span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 6l6 6-6 6" />
+            </svg>
           </button>
         </div>
       )}
