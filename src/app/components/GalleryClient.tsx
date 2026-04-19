@@ -247,7 +247,7 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
         </div>
       )}
       {lightboxIdx !== null && (
-        <div ref={overlayRef} className="fixed inset-0 z-50 bg-black/90 text-white flex items-center justify-center touch-none select-none">
+        <div ref={overlayRef} className="fixed inset-0 z-50 bg-black text-white flex items-center justify-center touch-none select-none">
           <button
             type="button"
             aria-label="닫기"
