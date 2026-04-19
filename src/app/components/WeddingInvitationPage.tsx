@@ -241,7 +241,7 @@ export default function WeddingInvitationPage({
               서울시 강남구 테헤란로 406 A동
             </p>
           </div>
-          <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
+          <div className="w-full aspect-[9/4] sm:aspect-[4/3] rounded-2xl overflow-hidden border border-black/10 shadow-sm">
             <KakaoMap address="서울 강남구 테헤란로 406" />
           </div>
           <NavigationButtons />
