@@ -1,8 +1,33 @@
+import type { Metadata } from "next";
 import WeddingInvitationPage from "@/app/components/WeddingInvitationPage";
+
+const brideParentsOgImagePath = "/image/optimized/large/HIS07303.jpg";
+
+export const metadata: Metadata = {
+  title: "신부 혼주 안내 | 성윤 💕 민지 결혼식 초대장",
+  description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+  openGraph: {
+    title: "신부 혼주 안내 | 성윤 💕 민지 결혼식 초대장",
+    description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+    images: [
+      {
+        url: brideParentsOgImagePath,
+        alt: "신부 혼주용 메인 이미지",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "신부 혼주 안내 | 성윤 💕 민지 결혼식 초대장",
+    description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+    images: [brideParentsOgImagePath],
+  },
+};
 
 export default function BrideParentsPage() {
   return (
     <WeddingInvitationPage
+      heroImageSrc={brideParentsOgImagePath}
       showCountdown={false}
       showGallery
       galleryImageFileNames={[

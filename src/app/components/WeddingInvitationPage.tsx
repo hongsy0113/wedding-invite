@@ -16,6 +16,7 @@ type AccountItem = {
 };
 
 type WeddingInvitationPageProps = {
+  heroImageSrc?: string;
   showCountdown?: boolean;
   showGallery?: boolean;
   showCoupleSection?: boolean;
@@ -58,6 +59,7 @@ const venueDrivingLines = [
 ];
 
 export default function WeddingInvitationPage({
+  heroImageSrc = "/image/optimized/main-image.jpg",
   showCountdown = true,
   showGallery = true,
   showCoupleSection = true,
@@ -94,7 +96,7 @@ export default function WeddingInvitationPage({
         <section>
           <div className="relative w-full h-[65vh] sm:h-[72vh] overflow-hidden">
             <Image
-              src="/image/optimized/main-image.jpg"
+              src={heroImageSrc}
               alt="메인 이미지"
               fill
               priority
