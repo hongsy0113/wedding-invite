@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 type GalleryClientProps = {
@@ -18,6 +19,13 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
   const canCollapse = visible > initialCount;
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const slideViewportRef = useRef<HTMLDivElement | null>(null);
+  const pointerIdRef = useRef<number | null>(null);
+  const dragStartXRef = useRef(0);
+  const [dragOffsetX, setDragOffsetX] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<-1 | 0 | 1>(0);
+  const [isSnapBack, setIsSnapBack] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     if (lightboxIdx !== null) {
@@ -52,13 +60,85 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
     return undefined;
   }, [lightboxIdx]);
 
+  useEffect(() => {
+    if (lightboxIdx === null) {
+      setDragOffsetX(0);
+      setSlideDirection(0);
+      setIsSnapBack(false);
+      setIsDragging(false);
+      pointerIdRef.current = null;
+      dragStartXRef.current = 0;
+    }
+  }, [lightboxIdx]);
+
   const showPrev = () => {
-    if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + images.length - 1) % images.length);
+    if (lightboxIdx === null || slideDirection !== 0 || isSnapBack) return;
+    setSlideDirection(-1);
   };
   const showNext = () => {
+    if (lightboxIdx === null || slideDirection !== 0 || isSnapBack) return;
+    setSlideDirection(1);
+  };
+
+  const getWrappedIndex = (baseIdx: number, offset: number) =>
+    (baseIdx + offset + images.length) % images.length;
+
+  const resetDragState = () => {
+    pointerIdRef.current = null;
+    dragStartXRef.current = 0;
+    setIsDragging(false);
+  };
+
+  const handleSlidePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (slideDirection !== 0 || isSnapBack) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    pointerIdRef.current = e.pointerId;
+    dragStartXRef.current = e.clientX;
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handleSlidePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (pointerIdRef.current !== e.pointerId) return;
+    const delta = e.clientX - dragStartXRef.current;
+    setDragOffsetX(delta);
+  };
+
+  const handleSlidePointerEnd = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (pointerIdRef.current !== e.pointerId) return;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+
+    const viewportWidth = slideViewportRef.current?.clientWidth ?? 0;
+    const threshold = Math.max(40, Math.min(120, viewportWidth * 0.16));
+    const shouldMove = Math.abs(dragOffsetX) > threshold;
+
+    if (shouldMove) {
+      setSlideDirection(dragOffsetX < 0 ? 1 : -1);
+      setDragOffsetX(0);
+    } else {
+      setIsSnapBack(true);
+      setDragOffsetX(0);
+    }
+
+    resetDragState();
+  };
+
+  const handleSlideTrackTransitionEnd = () => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + 1) % images.length);
+
+    if (slideDirection === 0) {
+      if (isSnapBack) {
+        setIsSnapBack(false);
+      }
+      return;
+    }
+
+    setLightboxIdx(getWrappedIndex(lightboxIdx, slideDirection));
+    setSlideDirection(0);
+    setIsSnapBack(false);
+    setDragOffsetX(0);
   };
 
   if (images.length === 0) {
@@ -162,15 +242,45 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
           >
             <span className="block h-6 w-6 text-2xl leading-6">‹</span>
           </button>
-          <div className="relative w-[90vw] h-[80vh]">
-            <Image
-              src={images[lightboxIdx].largeSrc}
-              alt="확대 이미지"
-              fill
-              className="object-contain"
-              sizes="90vw"
-              draggable={false}
-            />
+          <div
+            ref={slideViewportRef}
+            className={`relative w-[90vw] h-[80vh] overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+            onPointerDown={handleSlidePointerDown}
+            onPointerMove={handleSlidePointerMove}
+            onPointerUp={handleSlidePointerEnd}
+            onPointerCancel={handleSlidePointerEnd}
+          >
+            <div
+              className="flex h-full w-[300%]"
+              style={{
+                transform:
+                  slideDirection === 1
+                    ? "translateX(-66.6667%)"
+                    : slideDirection === -1
+                      ? "translateX(0)"
+                      : `translateX(calc(-33.3333% + ${dragOffsetX}px))`,
+                transition:
+                  slideDirection !== 0 || isSnapBack
+                    ? "transform 340ms cubic-bezier(0.22, 1, 0.36, 1)"
+                    : "none",
+              }}
+              onTransitionEnd={handleSlideTrackTransitionEnd}
+            >
+              {[getWrappedIndex(lightboxIdx, -1), lightboxIdx, getWrappedIndex(lightboxIdx, 1)].map(
+                (idx) => (
+                  <div key={`${images[idx].largeSrc}-${idx}`} className="relative h-full w-1/3 shrink-0">
+                    <Image
+                      src={images[idx].largeSrc}
+                      alt={images[idx].alt}
+                      fill
+                      className="object-contain"
+                      sizes="90vw"
+                      draggable={false}
+                    />
+                  </div>
+                )
+              )}
+            </div>
           </div>
           <button
             type="button"
