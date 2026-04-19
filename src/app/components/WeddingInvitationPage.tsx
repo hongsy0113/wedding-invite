@@ -127,7 +127,7 @@ export default function WeddingInvitationPage({
         {/* Invitation Message */}
         <section className="px-6 py-14 sm:py-16">
           <h2
-            className="mx-auto mb-10 w-fit text-center text-[1.4rem] sm:text-[1.55rem] font-[650] tracking-[-0.01em] text-emerald-700"
+            className="mx-auto mb-10 w-fit text-center text-[1.4rem] sm:text-[1.55rem] font-[550] tracking-[-0.01em] text-emerald-700"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
             {invitationHeading}
