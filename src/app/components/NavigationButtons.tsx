@@ -13,7 +13,7 @@ const TMAP_IOS_STORE_URL = "https://apps.apple.com/kr/app/%ED%8B%B0%EB%A7%B5-%EC
 const TMAP_ANDROID_STORE_URL = "https://play.google.com/store/apps/details?id=com.skt.tmap.ku";
 const KAKAO_IOS_STORE_URL = "https://apps.apple.com/kr/app/%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%82%B4%EB%B9%84-%EC%A3%BC%EC%B0%A8-%EB%B0%9C%EB%A0%9B-%EC%A0%84%EA%B8%B0%EC%B0%A8%EC%B6%A9%EC%A0%84-%EC%84%B8%EC%B0%A8-%EB%B3%B4%ED%97%98-%EC%A4%91%EA%B3%A0%EC%B0%A8/id417698849";
 const KAKAO_ANDROID_STORE_URL = "https://play.google.com/store/apps/details?id=com.locnall.KimGiSa";
-const KAKAO_JS_SDK_SRC = "https://developers.kakao.com/sdk/js/kakao.min.js";
+const KAKAO_JS_SDK_SRC = "https://t1.kakaocdn.net/kakao_js_sdk/2.8.0/kakao.min.js";
 const NAVER_IOS_STORE_URL = "https://apps.apple.com/kr/app/naver-map-navigation/id311867728";
 const NAVER_ANDROID_STORE_URL = "https://play.google.com/store/apps/details?id=com.nhn.android.nmap";
 
@@ -115,7 +115,8 @@ export default function NavigationButtons() {
     const storeUrl = isIOS() ? KAKAO_IOS_STORE_URL : KAKAO_ANDROID_STORE_URL;
     try {
       await openKakaoNavi();
-    } catch {
+    } catch (error) {
+      console.error("[KakaoNavi] failed to open", error);
       window.location.href = storeUrl;
     }
   };
