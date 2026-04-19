@@ -116,10 +116,10 @@ export default function WeddingInvitationPage({
           </div>
           <div className="px-6 pt-7 pb-4 text-center">
             <div className="mx-auto max-w-[34rem] border-y border-black/35 py-6">
-              <p className="text-[1.2rem] sm:text-[1.35rem] leading-snug text-gray-800 font-[501] tracking-[-0.01em]">
+              <p className="text-[1.2rem] sm:text-[1.35rem] leading-snug text-gray-900 font-[550] tracking-[-0.01em]">
                 2026년 7월 11일 토요일 오후 5시
               </p>
-              <p className="mt-2 text-[1.3rem] sm:text-[1.45rem] leading-snug text-gray-700 font-[501] tracking-[-0.01em]">
+              <p className="mt-2 text-[1.3rem] sm:text-[1.45rem] leading-snug text-gray-900 font-[550] tracking-[-0.01em]">
                 르비르모어 선릉
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function WeddingInvitationPage({
             {invitationHeading}
           </h2>
           <div
-            className="mx-auto max-w-[31rem] text-center text-[clamp(0.96rem,3.8vw,1.22rem)] leading-[2.05rem] sm:leading-[2.25rem] font-[501] tracking-[-0.01em] text-gray-700"
+            className="mx-auto max-w-[31rem] text-center text-[clamp(0.96rem,3.8vw,1.22rem)] leading-[2.05rem] sm:leading-[2.25rem] font-[550] tracking-[-0.01em] text-gray-900"
             style={{ fontFamily: "var(--font-gungsuh)" }}
           >
             {invitationMessageBlocks.map((block, blockIndex) => (
@@ -148,7 +148,7 @@ export default function WeddingInvitationPage({
               </p>
             ))}
             {invitationSignature ? (
-              <p className="mt-8 text-[clamp(0.9rem,3.6vw,1.14rem)] text-gray-700">
+              <p className="mt-8 text-[clamp(0.9rem,3.6vw,1.14rem)] text-gray-900">
                 {invitationSignature}
               </p>
             ) : null}
@@ -158,7 +158,7 @@ export default function WeddingInvitationPage({
         {/* Couple Section */}
         {showCoupleSection ? (
           <section className="px-6 py-10">
-            <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.85rem,2.55vw,1.12rem)] sm:text-[1.14rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-700 font-[501]">
+            <div className="mx-auto w-full whitespace-nowrap text-[clamp(0.85rem,2.55vw,1.12rem)] sm:text-[1.14rem] leading-[1.95rem] sm:leading-[2.05rem] tracking-[-0.01em] text-gray-900 font-[550]">
               <div className="mx-auto grid w-fit grid-cols-[auto_1.2em_2.4em_auto] items-baseline gap-y-5">
                 <span className="justify-self-end">홍근표 · 최문주</span>
                 <span className="w-full text-center text-[0.88em]">의</span>
@@ -179,10 +179,10 @@ export default function WeddingInvitationPage({
             <h2 className="text-[1.35rem] sm:text-[1.5rem] font-[650] text-[#C9979C] tracking-[-0.01em]">
               예식 안내
             </h2>
-            <p className="mt-8 whitespace-nowrap text-[1.1rem] sm:text-[1.25rem] leading-snug font-[501] text-[#333333] tracking-[-0.01em]">
+            <p className="mt-8 whitespace-nowrap text-[1.1rem] sm:text-[1.25rem] leading-snug font-[550] text-[#333333] tracking-[-0.01em]">
               2026년 7월 11일 토요일 오후 5시
             </p>
-            <p className="mt-4 whitespace-nowrap text-[1.1rem] sm:text-[1.25rem] leading-snug font-[501] text-[#333333] tracking-[-0.01em]">
+            <p className="mt-4 whitespace-nowrap text-[1.1rem] sm:text-[1.25rem] leading-snug font-[550] text-[#333333] tracking-[-0.01em]">
               르비르모어 선릉
             </p>
 
@@ -246,10 +246,10 @@ export default function WeddingInvitationPage({
             오시는 길
           </h2>
           <div className="mb-7 text-center space-y-4 max-w-[320px] mx-auto">
-            <p className="text-[17px] sm:text-[21px] leading-relaxed text-[#2D2D2D] font-[501] tracking-[-0.01em]">
+            <p className="text-[17px] sm:text-[21px] leading-relaxed text-[#2D2D2D] font-[550] tracking-[-0.01em]">
               르비르모어 선릉
             </p>
-            <p className="text-[15px] sm:text-[18px] leading-relaxed text-[#444444] font-[501]">
+            <p className="text-[15px] sm:text-[18px] leading-relaxed text-[#444444] font-[550]">
               서울시 강남구 테헤란로 406 A동
             </p>
           </div>
@@ -260,7 +260,7 @@ export default function WeddingInvitationPage({
           <div className="mt-8 space-y-9 text-center">
             <div className="space-y-3">
               <h3 className="text-[16px] text-[#C9979C] font-[650]">주소</h3>
-              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[501]">
+              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[550]">
                 {venueAddressLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -271,7 +271,7 @@ export default function WeddingInvitationPage({
 
             <div className="space-y-3">
               <h3 className="text-[16px] text-[#C9979C] font-[650]">대중교통</h3>
-              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[501]">
+              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[550]">
                 {venueTransitLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -282,7 +282,7 @@ export default function WeddingInvitationPage({
 
             <div className="space-y-3">
               <h3 className="text-[16px] text-[#C9979C] font-[650]">자차</h3>
-              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[501]">
+              <p className="text-[16px] leading-relaxed text-[#3B3B3B] font-[550]">
                 {venueDrivingLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -298,7 +298,7 @@ export default function WeddingInvitationPage({
           <h2 className="text-[1.35rem] sm:text-[1.5rem] font-[650] text-[#C9979C] tracking-[-0.01em] text-center mb-8">
             마음 전하실 곳
           </h2>
-          <p className="mb-4 text-center text-base leading-relaxed text-gray-600 font-[501]">
+          <p className="mb-4 text-center text-base leading-relaxed text-gray-900 font-[550]">
             멀리서도 축하의 마음을
             <br />
             전하고 싶으신 분들을 위해
