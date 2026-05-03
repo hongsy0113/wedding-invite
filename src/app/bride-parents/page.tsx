@@ -57,7 +57,9 @@ export default function BrideParentsPage() {
         <>
           신부 혼주{"\u00A0\u00A0"}
           <span className="font-semibold">김덕규 · 손정희</span>
-          {" 拜上"}
+          <br />
+          신랑 혼주{"\u00A0\u00A0"}
+          <span className="font-semibold">홍근표 · 최문주</span>
         </>
       }
       accountItems={[
