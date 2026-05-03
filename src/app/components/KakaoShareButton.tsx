@@ -82,7 +82,6 @@ export default function KakaoShareButton() {
     const { origin, href } = window.location;
     const baseOrigin = process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL || origin;
     const pageUrl = href.split("#")[0];
-    const venuePageUrl = new URL("/venue-map", baseOrigin).toString();
     const ogImageMeta = document.querySelector('meta[property="og:image"]') as HTMLMetaElement | null;
     const ogImageUrl = ogImageMeta?.content
       ? new URL(ogImageMeta.content, baseOrigin).toString()
@@ -105,13 +104,6 @@ export default function KakaoShareButton() {
           link: {
             mobileWebUrl: pageUrl,
             webUrl: pageUrl,
-          },
-        },
-        {
-          title: "위치 보기",
-          link: {
-            mobileWebUrl: venuePageUrl,
-            webUrl: venuePageUrl,
           },
         },
       ],
