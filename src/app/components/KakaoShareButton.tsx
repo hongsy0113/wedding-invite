@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { ChevronUp, Share2 } from "lucide-react";
 
 declare global {
   interface Window {
@@ -40,38 +41,40 @@ const FALLBACK_SITE_URL = "https://sungyoon-minji.vercel.app";
 
 export default function KakaoShareButton() {
   const [isReady, setIsReady] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
+
+  const initializeKakao = useCallback(() => {
+    const appKey = process.env.NEXT_PUBLIC_KAKAO_APP_KEY;
+    if (!appKey || !window.Kakao) return false;
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(appKey);
+    }
+    setIsReady(true);
+    return true;
+  }, []);
 
   useEffect(() => {
     const appKey = process.env.NEXT_PUBLIC_KAKAO_APP_KEY;
     if (!appKey) return;
 
-    const initialize = () => {
-      if (!window.Kakao) return;
-      if (!window.Kakao.isInitialized()) {
-        window.Kakao.init(appKey);
-      }
-      setIsReady(true);
-    };
-
     if (window.Kakao) {
-      initialize();
+      initializeKakao();
       return;
     }
 
     const script = document.createElement("script");
     script.src = KAKAO_SDK_URL;
     script.async = true;
-    script.onload = initialize;
+    script.onload = () => initializeKakao();
     document.head.appendChild(script);
 
     return () => {
       script.onload = null;
     };
-  }, []);
+  }, [initializeKakao]);
 
   const onShare = useCallback(() => {
-    if (!window.Kakao || !isReady) {
+    const ready = initializeKakao() || isReady;
+    if (!window.Kakao || !ready) {
       alert("카카오 공유를 초기화하지 못했습니다. 잠시 후 다시 시도해 주세요.");
       return;
     }
@@ -113,33 +116,37 @@ export default function KakaoShareButton() {
         },
       ],
     });
-  }, [isReady]);
+  }, [initializeKakao, isReady]);
 
-  const onCopyLink = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setIsCopied(true);
-      window.setTimeout(() => setIsCopied(false), 1500);
-    } catch {
-      alert("링크 복사에 실패했습니다. 다시 시도해 주세요.");
+  const onScrollTop = useCallback(() => {
+    const main = document.querySelector("main");
+    if (main instanceof HTMLElement && main.scrollHeight > main.clientHeight) {
+      main.scrollTo({ top: 0, behavior: "smooth" });
     }
+    const scrollingElement = document.scrollingElement;
+    if (scrollingElement) {
+      scrollingElement.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <div className="mt-6 flex items-center justify-center gap-2">
+    <div className="fixed bottom-8 right-5 z-40 flex flex-col items-center gap-3.5 sm:bottom-10 sm:right-7">
       <button
         type="button"
-        onClick={onCopyLink}
-        className="rounded-lg border border-black/10 bg-white px-3 py-2 text-[12px] font-medium text-gray-700 shadow-sm transition hover:bg-gray-50"
+        onClick={onScrollTop}
+        aria-label="맨 위로 이동"
+        className="flex h-[clamp(42px,11.5vw,50px)] w-[clamp(42px,11.5vw,50px)] items-center justify-center rounded-full bg-[#D9D9D9]/95 text-white shadow-[0_8px_16px_rgba(0,0,0,0.14)] transition hover:brightness-95 active:scale-[0.98]"
       >
-        {isCopied ? "복사됨" : "링크 복사"}
+        <ChevronUp size={20} strokeWidth={2.2} />
       </button>
       <button
         type="button"
         onClick={onShare}
-        className="rounded-lg bg-[#FEE500] px-3 py-2 text-[12px] font-semibold text-[#181600] shadow-sm transition hover:brightness-95"
+        aria-label="카카오톡 공유하기"
+        className="flex h-[clamp(42px,11.5vw,50px)] w-[clamp(42px,11.5vw,50px)] items-center justify-center rounded-full bg-[#D9D9D9]/95 text-white shadow-[0_8px_16px_rgba(0,0,0,0.14)] transition hover:brightness-95 active:scale-[0.98]"
       >
-        카카오톡 공유
+        <Share2 size={16} strokeWidth={2.1} />
       </button>
     </div>
   );
