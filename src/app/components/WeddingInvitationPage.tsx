@@ -184,7 +184,7 @@ export default function WeddingInvitationPage({
         ) : null}
 
         {/* Date / Calendar Section */}
-        <section className="px-8 sm:px-10 py-12">
+        <section className="px-8 sm:px-10 py-9">
           <div className="mx-auto max-w-[27rem] text-center">
             <h2 className="text-[1.35rem] sm:text-[1.5rem] font-[650] text-[#C9979C] tracking-[-0.01em]">
               예식 안내
@@ -196,9 +196,9 @@ export default function WeddingInvitationPage({
               르비르모어 선릉
             </p>
 
-            <p className="mt-14 text-[1.5rem] sm:text-[1.7rem] font-[650] text-[#C9979C] tracking-[-0.01em]">7월</p>
+            <p className="mt-8 text-[1.5rem] sm:text-[1.7rem] font-[650] text-[#C9979C] tracking-[-0.01em]">7월</p>
 
-            <div className="mt-10 grid grid-cols-7 gap-y-4 sm:gap-y-6 text-center text-[1.05rem] sm:text-[1.9rem] leading-none">
+            <div className="mt-7 grid grid-cols-7 gap-y-2 sm:gap-y-3 text-center text-[1.05rem] sm:text-[1.9rem] leading-none">
               {Array.from({ length: 7 }).map((_, i) => (
                 <div
                   key={`dw-${i}`}
@@ -216,12 +216,12 @@ export default function WeddingInvitationPage({
                 const isWedding = day === 11;
 
                 if (!isValid) {
-                  return <div key={`d-${i}`} className="h-10 sm:h-14" />;
+                  return <div key={`d-${i}`} className="h-8 sm:h-11" />;
                 }
 
                 if (isWedding) {
                   return (
-                    <div key={`d-${i}`} className="flex items-center justify-center h-10 sm:h-14">
+                    <div key={`d-${i}`} className="flex items-center justify-center h-8 sm:h-11">
                       <div className="h-9 w-9 sm:h-12 sm:w-12 rounded-full bg-[#EAC5CC] flex items-center justify-center text-white font-normal shadow-[0_4px_10px_rgba(0,0,0,0.08)]">
                         {day}
                       </div>
@@ -232,7 +232,7 @@ export default function WeddingInvitationPage({
                 return (
                   <div
                     key={`d-${i}`}
-                    className="h-10 sm:h-14 flex items-center justify-center font-normal text-[#505050]"
+                    className="h-8 sm:h-11 flex items-center justify-center font-normal text-[#505050]"
                   >
                     {day}
                   </div>
