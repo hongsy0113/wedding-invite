@@ -35,8 +35,8 @@ declare global {
 const KAKAO_SDK_URL = "https://developers.kakao.com/sdk/js/kakao.min.js";
 const SHARE_TITLE = "홍성윤 ♥ 김민지 결혼합니다.";
 const SHARE_DESCRIPTION = "2026년 7월 11일 토요일 17시, 르비르모어 선릉";
-const VENUE_MAP_URL = "https://map.kakao.com/link/to/르비르모어 선릉,37.5049,127.0506";
 const OG_IMAGE_PATH = "/image/optimized/main-image.jpg";
+const FALLBACK_SITE_URL = "https://sungyoon-minji.vercel.app";
 
 export default function KakaoShareButton() {
   const [isReady, setIsReady] = useState(false);
@@ -77,11 +77,13 @@ export default function KakaoShareButton() {
     }
 
     const { origin, pathname } = window.location;
-    const pageUrl = `${origin}${pathname}`;
+    const baseOrigin = process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL || origin;
+    const pageUrl = new URL(pathname, baseOrigin).toString();
+    const venuePageUrl = new URL("/venue-map", baseOrigin).toString();
     const ogImageMeta = document.querySelector('meta[property="og:image"]') as HTMLMetaElement | null;
     const ogImageUrl = ogImageMeta?.content
-      ? new URL(ogImageMeta.content, origin).toString()
-      : `${origin}${OG_IMAGE_PATH}`;
+      ? new URL(ogImageMeta.content, baseOrigin).toString()
+      : new URL(OG_IMAGE_PATH, baseOrigin).toString();
 
     window.Kakao.Share.sendDefault({
       objectType: "feed",
@@ -105,8 +107,8 @@ export default function KakaoShareButton() {
         {
           title: "위치 보기",
           link: {
-            mobileWebUrl: VENUE_MAP_URL,
-            webUrl: VENUE_MAP_URL,
+            mobileWebUrl: venuePageUrl,
+            webUrl: venuePageUrl,
           },
         },
       ],
