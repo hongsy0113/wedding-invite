@@ -28,7 +28,7 @@ export default function GroomParentsPage() {
   return (
     <WeddingInvitationPage
       heroImageSrc={groomParentsOgImagePath}
-      showCountdown={false}
+      showCountdown
       showGallery
       galleryImageFileNames={[
         "HI201690.jpg",
