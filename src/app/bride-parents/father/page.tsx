@@ -63,7 +63,7 @@ export default function BrideParentsFatherPage() {
       accountItems={[
         {
           id: "bride-father",
-          label: "신부 아버지 계좌",
+          label: "신부 아버지",
           number: "815240286382",
           detail: "국민은행 김덕규",
           copyValue: "국민은행 815240286382 김덕규",

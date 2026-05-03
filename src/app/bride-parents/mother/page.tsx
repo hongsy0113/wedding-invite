@@ -63,7 +63,7 @@ export default function BrideParentsMotherPage() {
       accountItems={[
         {
           id: "bride-mother",
-          label: "신부 어머니 계좌",
+          label: "신부 어머니",
           number: "829210424321",
           detail: "국민은행 손정희",
           copyValue: "국민은행 829210424321 손정희",
