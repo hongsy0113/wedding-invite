@@ -5,6 +5,7 @@ import WeddingCountdown from "@/app/components/WeddingCountdown";
 import NavigationButtons from "@/app/components/NavigationButtons";
 import AccountSection from "@/app/components/AccountSection";
 import ContactSection from "@/app/components/ContactSection";
+import KakaoShareButton from "@/app/components/KakaoShareButton";
 import galleryImages from "@/data/gallery-images.json";
 import { ReactNode } from "react";
 
@@ -321,6 +322,7 @@ export default function WeddingInvitationPage({
           ) : null}
           <AccountSection items={accountItems} />
           <ContactSection items={contactItems} />
+          <KakaoShareButton />
         </section>
 
         <footer className="px-6 py-10 text-center text-[11px] text-gray-400 font-normal tracking-wide">
