@@ -33,7 +33,7 @@ export default function GroomParentsPage() {
         <>
           신랑 혼주{"\u00A0\u00A0"}
           <span className="font-semibold">홍근표 · 최문주</span>
-          {" 拜上"}
+          {" 배상"}
         </>
       }
       accountItems={[
