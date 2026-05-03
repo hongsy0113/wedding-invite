@@ -28,6 +28,7 @@ type WeddingInvitationPageProps = {
   invitationSignature?: ReactNode;
   accountItems?: AccountItem[];
   contactItems?: ContactItem[];
+  showGiftIntroMessage?: boolean;
 };
 
 type ContactItem = {
@@ -79,6 +80,7 @@ export default function WeddingInvitationPage({
   invitationSignature,
   accountItems,
   contactItems = [],
+  showGiftIntroMessage = true,
 }: WeddingInvitationPageProps) {
   const imageByFileName = new Map(
     galleryImages.map((image) => [extractFileName(image.largeSrc), image])
@@ -308,13 +310,15 @@ export default function WeddingInvitationPage({
           <h2 className="text-[1.35rem] sm:text-[1.5rem] font-[650] text-[#C9979C] tracking-[-0.01em] text-center mb-8">
             마음 전하실 곳
           </h2>
-          <p className="mb-4 text-center text-base leading-relaxed text-gray-900 font-[550]">
-            멀리서도 축하의 마음을
-            <br />
-            전하고 싶으신 분들을 위해
-            <br />
-            계좌번호를 안내드립니다.
-          </p>
+          {showGiftIntroMessage ? (
+            <p className="mb-4 text-center text-base leading-relaxed text-gray-900 font-[550]">
+              멀리서도 축하의 마음을
+              <br />
+              전하고 싶으신 분들을 위해
+              <br />
+              계좌번호를 안내드립니다.
+            </p>
+          ) : null}
           <AccountSection items={accountItems} />
           <ContactSection items={contactItems} />
         </section>

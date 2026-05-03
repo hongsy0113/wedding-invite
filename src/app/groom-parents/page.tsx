@@ -36,6 +36,7 @@ export default function GroomParentsPage() {
           {" 배상"}
         </>
       }
+      showGiftIntroMessage={false}
       accountItems={[
         {
           id: "groom-father",
