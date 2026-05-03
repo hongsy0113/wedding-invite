@@ -26,7 +26,7 @@ export default function GroomParentsPage() {
           "저희 아들 성윤이가 귀한 인연을 만나",
           "평생의 반려자를 맞이하게 되었습니다.",
           "기쁜 날 귀한 걸음 하시어",
-          "따뜻한 축복과 덕담을 나누어 주시면 감사하겠습니다.",
+          "따뜻한 축복과 덕담 주시면 감사하겠습니다.",
         ],
       ]}
       invitationSignature={
