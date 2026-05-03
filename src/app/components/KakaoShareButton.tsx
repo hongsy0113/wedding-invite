@@ -79,9 +79,9 @@ export default function KakaoShareButton() {
       return;
     }
 
-    const { origin, pathname } = window.location;
+    const { origin, href } = window.location;
     const baseOrigin = process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL || origin;
-    const pageUrl = new URL(pathname, baseOrigin).toString();
+    const pageUrl = href.split("#")[0];
     const venuePageUrl = new URL("/venue-map", baseOrigin).toString();
     const ogImageMeta = document.querySelector('meta[property="og:image"]') as HTMLMetaElement | null;
     const ogImageUrl = ogImageMeta?.content
