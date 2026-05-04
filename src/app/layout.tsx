@@ -6,7 +6,7 @@ const ogImagePath = "/image/optimized/main-image.jpg";
 
 export const metadata: Metadata = {
   title: "성윤 💕 민지 결혼식 초대장",
-  description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+  description: "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉",
   robots: {
     index: false,
     follow: false,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "성윤 💕 민지 결혼식 초대장",
-    description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+    description: "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉",
     type: "website",
     locale: "ko_KR",
     siteName: "Sungyoon& Minji Wedding",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "성윤 💕 민지 결혼식 초대장",
-    description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+    description: "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉",
     images: [ogImagePath],
   },
 };

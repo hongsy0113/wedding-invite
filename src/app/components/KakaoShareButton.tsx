@@ -35,7 +35,7 @@ declare global {
 
 const KAKAO_SDK_URL = "https://developers.kakao.com/sdk/js/kakao.min.js";
 const SHARE_TITLE = "홍성윤 ♥ 김민지 결혼합니다.";
-const SHARE_DESCRIPTION = "2026년 7월 11일 토요일 17시, 르비르모어 선릉";
+const SHARE_DESCRIPTION = "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉";
 const OG_IMAGE_PATH = "/image/optimized/main-image.jpg";
 const FALLBACK_SITE_URL = "https://sungyoon-minji.vercel.app";
 

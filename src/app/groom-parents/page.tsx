@@ -5,10 +5,10 @@ const groomParentsOgImagePath = "/image/optimized/large/HIS07303.jpg";
 
 export const metadata: Metadata = {
   title: "성윤 💕 민지 결혼식 초대장",
-  description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+  description: "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉",
   openGraph: {
     title: "성윤 💕 민지 결혼식 초대장",
-    description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+    description: "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉",
     images: [
       {
         url: groomParentsOgImagePath,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "성윤 💕 민지 결혼식 초대장",
-    description: "2026년 7월 11일 토요일 17시, 르비르모어 선릉",
+    description: "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉",
     images: [groomParentsOgImagePath],
   },
 };
