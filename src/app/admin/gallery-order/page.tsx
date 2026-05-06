@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Group = {
   name: string;
@@ -45,21 +45,19 @@ export default function GalleryOrderAdminPage() {
   const [dragItem, setDragItem] = useState<DragItem | null>(null);
   const [dropTarget, setDropTarget] = useState<DropTarget | null>(null);
 
-  const headers = useMemo(
-    () =>
-      password
-        ? {
-            "x-gallery-admin-password": password,
-          }
-        : {},
-    [password]
-  );
+  const buildHeaders = () => {
+    const nextHeaders = new Headers();
+    if (password) {
+      nextHeaders.set("x-gallery-admin-password", password);
+    }
+    return nextHeaders;
+  };
 
   async function load() {
     setLoading(true);
     setMessage("");
     const res = await fetch("/api/admin/gallery-order", {
-      headers,
+      headers: buildHeaders(),
       cache: "no-store",
     });
 
@@ -109,10 +107,11 @@ export default function GalleryOrderAdminPage() {
     setMessage("");
     const res = await fetch("/api/admin/gallery-order", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...headers,
-      },
+      headers: (() => {
+        const nextHeaders = buildHeaders();
+        nextHeaders.set("Content-Type", "application/json");
+        return nextHeaders;
+      })(),
       body: JSON.stringify({
         groups: groups.map((group) => ({
           name: group.name,
