@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl = "https://sungyoon-minji.vercel.app";
-const ogImagePath = "/image/optimized/main-image.jpg";
+const ogImagePath = "/image/optimized/large/HIS07303.jpg";
 
 export const metadata: Metadata = {
   title: "성윤 💕 민지 결혼식 초대장",
