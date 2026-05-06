@@ -175,7 +175,8 @@ export default function GalleryClient({ initialCount, images }: GalleryClientPro
     <div>
       <div className="grid grid-cols-3 gap-2">
         {images.slice(0, visible).map((image, idx) => {
-          const isTopAlignedThumb = image.thumbSrc.endsWith("/HIS08662.jpg");
+          const isTopAlignedThumb =
+            image.thumbSrc.endsWith("/HIS08662.jpg") || image.thumbSrc.endsWith("/HIS07369.jpg");
           return (
           <button
             key={image.largeSrc}

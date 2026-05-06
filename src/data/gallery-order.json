@@ -1,0 +1,71 @@
+{
+  "groups": [
+    {
+      "name": "studio",
+      "prefixes": [
+        "HI"
+      ],
+      "chunkSize": 3,
+      "manualOrder": [
+        "HI201960.jpg",
+        "HIS08662.jpg",
+        "HIS07869.jpg",
+        "HIS07508.jpg",
+        "HIS08099-.jpg",
+        "HIS07303.jpg",
+        "HIS07178.jpg",
+        "HIS07668.jpg",
+        "HI201690.jpg",
+        "HIS08516.jpg",
+        "HIS07369.jpg",
+        "HI202108.jpg",
+        "HIS07956-.jpg",
+        "HIS07344.jpg",
+        "HIS08212.jpg",
+        "HI202050.jpg",
+        "HIS08587.jpg",
+        "HIS08645.jpg",
+        "HIS07160.jpg",
+        "HI202193.jpg",
+        "HI201941.jpg",
+        "HI201982.jpg",
+        "HIS08754.jpg",
+        "HIS07704.jpg"
+      ]
+    },
+    {
+      "name": "porto",
+      "prefixes": [
+        "DS"
+      ],
+      "chunkSize": 3,
+      "manualOrder": [
+        "DSC01030.jpg",
+        "DSC00800.jpg",
+        "DSC00151.jpg",
+        "DSC00757.jpg",
+        "DSC01087_extra.jpg",
+        "DSC00636.jpg",
+        "DSC00011.jpg",
+        "DSC01023.jpg",
+        "DSC00987.jpg",
+        "DSC00880.jpg",
+        "DSC00339.jpg",
+        "DSC00522.jpg",
+        "DSC00246.jpg",
+        "DSC00603.jpg",
+        "DSC00262.jpg",
+        "DSC01064.jpg",
+        "DSC00217.jpg",
+        "DSC00551.jpg",
+        "DSC00651.jpg",
+        "DSC00413.jpg",
+        "DSC00394.jpg",
+        "DSC01072.jpg",
+        "DSC00941.jpg",
+        "DSC00874.jpg"
+      ]
+    }
+  ],
+  "appendUnmatched": true
+}
