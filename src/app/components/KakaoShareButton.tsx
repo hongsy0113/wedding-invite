@@ -11,6 +11,7 @@ declare global {
       Share: {
         sendDefault: (options: {
           objectType: "feed";
+          buttonTitle?: string;
           content: {
             title: string;
             description: string;
@@ -36,8 +37,10 @@ declare global {
 const KAKAO_SDK_URL = "https://developers.kakao.com/sdk/js/kakao.min.js";
 const SHARE_TITLE = "홍성윤 ♥ 김민지 결혼합니다.";
 const SHARE_DESCRIPTION = "2026년 7월 11일 토요일 오후 5시, 르비르모어 선릉";
-const OG_IMAGE_PATH = "/image/optimized/main-image.jpg";
+const OG_IMAGE_PATH = "/image/optimized/large/HIS07303.jpg";
 const FALLBACK_SITE_URL = "https://sungyoon-minji.vercel.app";
+
+const normalizeUrl = (value: string) => value.replace(/\/+$/, "");
 
 export default function KakaoShareButton() {
   const [isReady, setIsReady] = useState(false);
@@ -79,16 +82,15 @@ export default function KakaoShareButton() {
       return;
     }
 
-    const { origin, href } = window.location;
-    const baseOrigin = process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL || origin;
-    const pageUrl = href.split("#")[0];
-    const ogImageMeta = document.querySelector('meta[property="og:image"]') as HTMLMetaElement | null;
-    const ogImageUrl = ogImageMeta?.content
-      ? new URL(ogImageMeta.content, baseOrigin).toString()
-      : new URL(OG_IMAGE_PATH, baseOrigin).toString();
+    const { origin } = window.location;
+    const baseOrigin = normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL || origin);
+    // Keep template values fully canonical and static for better Kakao re-share compatibility.
+    const pageUrl = `${baseOrigin}/`;
+    const ogImageUrl = new URL(OG_IMAGE_PATH, `${baseOrigin}/`).toString();
 
     window.Kakao.Share.sendDefault({
       objectType: "feed",
+      buttonTitle: "청첩장 보기",
       content: {
         title: SHARE_TITLE,
         description: SHARE_DESCRIPTION,
