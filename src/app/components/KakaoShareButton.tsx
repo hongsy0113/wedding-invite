@@ -84,8 +84,9 @@ export default function KakaoShareButton() {
 
     const { origin } = window.location;
     const baseOrigin = normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL || origin);
-    // Keep template values fully canonical and static for better Kakao re-share compatibility.
-    const pageUrl = `${baseOrigin}/`;
+    // Share the exact current page (e.g. /groom-parents, /bride-parents) instead of always sharing root.
+    const currentPath = window.location.pathname || "/";
+    const pageUrl = new URL(currentPath, `${baseOrigin}/`).toString();
     const ogImageUrl = new URL(OG_IMAGE_PATH, `${baseOrigin}/`).toString();
 
     window.Kakao.Share.sendDefault({
