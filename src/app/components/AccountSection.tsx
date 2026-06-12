@@ -21,9 +21,9 @@ const DEFAULT_ACCOUNT_ITEMS: AccountItem[] = [
   {
     id: "bride",
     label: "신부 계좌",
-    number: "50610201258360",
-    detail: "국민은행 김민지",
-    copyValue: "국민은행 50610201258360 김민지",
+    number: "3333078550918",
+    detail: "카카오뱅크 김민지",
+    copyValue: "카카오뱅크 3333078550918 김민지",
   },
 ];
 
